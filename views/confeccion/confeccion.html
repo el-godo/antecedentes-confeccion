@@ -1,0 +1,113 @@
+{{extend 'layout1.html'}}
+
+
+<style>
+
+  div.dataTables_wrapper div.dataTables_info {
+    padding-top: 50px;
+    white-space: nowrap;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+    padding-top: 70px;
+
+
+}
+
+.pagination {
+    display: -ms-flexbox;
+    display: inline-flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+</style>
+
+
+{{block header}}
+    <h2>Página de Inicio - Sistema Confeccion de Antecedentes</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='panel')}}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Confeccion</strong>
+      </li>
+    </ol>
+{{end}}                  
+
+
+<h3 class="animated fadeInUp">Panel Confeccion</h3>
+<br>
+
+<div class="row animated fadeInRightBig">
+  <div class="col-lg-2">
+    <div class="widget style1 navy-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa-print fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL('confeccion', 'por_sistema')}}" style="color: #FFF">Imprimir por Sistema</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2">
+    <div class="widget style1 red-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa-refresh fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL('confeccion', 'modificar_padron')}}" style="color: #FFF">Modificar Datos</a></h5>
+        </div>
+      </div>
+    </div> 
+ 
+  </div>
+  <div class="col-lg-2">
+    <div class="widget style1 blue-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa-file-text fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL('confeccion', 'reimprimir')}}" style="color: #FFF">Certificados Impresos</a></h5>
+        </div>
+      </div>
+
+    </div> 
+
+</div>
+<div class="col-lg-2">
+    <div class="widget style1 yellow-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa-indent fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL('imprimir', 'margenes')}}" style="color: #FFF">Margenes</a></h5>
+        </div>
+      </div>
+    </div> 
+</div>
+
+
+
+
+
+
+
+
+
+       
+
+            
+      
+
+        

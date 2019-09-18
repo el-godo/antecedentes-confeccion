@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+<br>
+<ul class="breadcrumb">
+    <li><a href="{{=URL(c='default',f='principal')}}"  ><span class="glyphicon glyphicon-th" ></span> Panel administración</a></li>
+</ul>
+
+
+
+
+<div class="container-fluid">
+   
+        <div class="col-md-12">
+        	<h4><p class="text-left"> Privilegio de Acceso </p> </h4>
+        	<br>
+        	<style>
+				.web2py_counter { display:none}
+			</style> 
+			{{=grid}}
+			<br>
+			
+        </div>
+</div>

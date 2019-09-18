@@ -1,0 +1,385 @@
+(dp1
+S'output'
+p2
+S'missing "pass" in view'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'response.write(\'<!DOCTYPE html>\\n<html>\\n\\n\\n<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/empty_page.html by HTTrack Website Copier/3.x [XR&CO\\\'2014], Fri, 29 Jun 2018 13:54:48 GMT -->\\n<head>\\n\\n    <meta charset="utf-8">\\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n\\n    <title>Polic\\xc3\\xada de Catamarca | Sistema de Confeccion</title>\\n\\n    <link href="\', escape=False)\nresponse.write(URL(\'static\', \'assets/css/bootstrap.min.css\'))\nresponse.write(\'" rel="stylesheet">\\n    <link href="\', escape=False)\nresponse.write(URL(\'static\', \'assets/font-awesome/css/font-awesome.css\' ))\nresponse.write(\'" rel="stylesheet">\\n\\n    <link href="\', escape=False)\nresponse.write(URL(\'static\', \'assets/css/plugins/dataTables/datatables.min.css\'))\nresponse.write(\'" rel="stylesheet">\\n\\n    <link href="\', escape=False)\nresponse.write(URL(\'static\', \'assets/css/animate.css\' ))\nresponse.write(\'" rel="stylesheet">\\n    <link href="\', escape=False)\nresponse.write(URL(\'static\', \'assets/css/style.css\' ))\nresponse.write(\'" rel="stylesheet">\\n\\n</head>\\n\\n<body class="">\\n\\n    <div id="wrapper">\\n\\n    <nav class="navbar-default navbar-static-side" role="navigation">\\n        <div class="sidebar-collapse">\\n            <ul class="nav metismenu" id="side-menu">\\n                <li class="nav-header">\\n                    <div class="dropdown profile-element">\\n                        <img alt="image" class="rounded-circle" src="\', escape=False)\nresponse.write(URL(\'static\', \'assets/img/user.png\'))\nresponse.write(\'"/>\\n                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">\\n                            <span class="block m-t-xs font-bold"></span>\\n                            <span class="text-muted text-xs block"> \', escape=False)\nresponse.write(str.upper(auth.user.first_name))\nresponse.write(\'&nbsp;<b class="caret"></b></span>\\n                        </a>\\n                        <ul class="dropdown-menu animated fadeInRight m-t-xs">\\n                            <li><a class="dropdown-item" href="profile.html">\', escape=False)\nresponse.write(str.upper(auth.user.first_name))\nresponse.write(\'</a></li>\\n                            <li><a class="dropdown-item" href="contacts.html">Cambiar Contrase\\xc3\\xb1a</a></li>\\n                            \\n                            <li class="dropdown-divider"></li>\\n                            <li><a class="dropdown-item" href="\', escape=False)\nresponse.write(URL(\'default\', \'user\', args=(\'logout\')))\nresponse.write(\'">Salir</a></li>\\n                        </ul>\\n                    </div>\\n                    <div class="logo-element">\\n                        D4\\n                    </div>\\n                </li>\\n               \\n               \', escape=False)\nif auth.user.oficina == \'Super\' or auth.user.oficina == \'Confeccion\':\n    response.write(\' \\n                <li>\\n                        <a href="#"><i class="fa fa-plus-square-o"></i> <span class="nav-label">Sistema Confeccion </span><span class="fa arrow"></span></a>\\n                        <ul class="nav nav-second-level collapse">\\n\\n\\n                            <li>\\n                                <a href="#" id="damian"><i class="fa fa-check-square-o"></i>Mesa de entrada <span class="fa arrow"></span></a>\\n                                <ul class="nav nav-third-level">\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'entrada\', \'ingreso\'))\n    response.write(\'">Generar Solicitud</a></li>\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'entrada\', \'form_ver_estado\'))\n    response.write(\'">Ver Estado</a></li>                              \\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'entrada\', \'ingreso_aso\'))\n    response.write(\'">Entregar certicado</a></li>\\n                                    \\n                                </ul>\\n                            </li>\\n                            <li><a href="#"><i class="fa fa-hand-o-up"></i>Archivo<span class="fa arrow"></span></a>\\n                                <ul class="nav nav-third-level">\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'archivo\', \'form_archivo\'))\n    response.write(\'">Archivo</a></li>\\n                                   \\n\\n                                </ul>\\n                            </li>\\n                            \\n                            <li>\\n                                <a href="#"><i class="fa fa-binoculars"></i>Confecci\\xc3\\xb2n<span class="fa arrow"></span></a>\\n                                <ul class="nav nav-third-level">\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'confeccion\', \'por_sistema\'))\n    response.write(\'">Imprimir ingresados por Sistema</a></li>\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'confeccion\', \'historial\'))\n    response.write(\'">Modificar datos del solicitante</a></li>\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'confeccion\', \'historial\'))\n    response.write(\'">Certificados Impresos</a></li>\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'confeccion\', \'historial\'))\n    response.write(\'">Configurar margenes</a></li> \\n                                    \\n\\n                                </ul>\\n                            </li>\\n                            \\n                           \\n                            <li>\\n                                <a href="#"><i class="fa fa-user-circle-o"></i>Usuarios<span class="fa arrow"></span></a>\\n                                <ul class="nav nav-third-level">\\n                                    <li><a href="\', escape=False)\n    response.write(URL(\'asesoria\', \'usuario_letrada\'))\n    response.write(\'">Listado</a></li>\\n\\n                                </ul>\\n                            </li>\\n                           \\n                        </ul>\\n                    </li>\\n                \\n                \', escape=False)\n    pass\nresponse.write(\'\\n               \\n                \', escape=False)\nif auth.user.oficina == \'Super\' or auth.user.oficina == \'Confeccion\':\n    response.write(\'\\n                <li>\\n                    <a href="#"><i class="fa fa-linode"></i> <span class="nav-label">DESPACHO J1</span><span class="fa arrow"></span></a>\\n                    <ul class="nav nav-second-level collapse">\\n                        <li><a href="typography.html">Typography</a></li>\\n                        <li><a href="icons.html">Icons</a></li>\\n                        <li><a href="draggable_panels.html">Draggable Panels</a></li> <li><a href="resizeable_panels.html">Resizeable Panels</a></li>\\n                        <li><a href="buttons.html">Buttons</a></li>\\n                        <li><a href="video.html">Video</a></li>\\n                        <li><a href="tabs_panels.html">Panels</a></li>\\n                        <li><a href="tabs.html">Tabs</a></li>\\n                        <li><a href="notifications.html">Notifications & Tooltips</a></li>\\n                        <li><a href="helper_classes.html">Helper css classes</a></li>\\n                        <li><a href="badges_labels.html">Badges, Labels, Progress</a></li>\\n                    </ul>\\n                </li>\\n                \', escape=False)\n    pass\nresponse.write(\'\\n\\n                \', escape=False)\nif auth.user.oficina == \'Super\' or auth.user.oficina == \'Confeccion\':\n    response.write(\'\\n                \\n                <li>\\n                    <a href="#"><i class="fa fa-gear"></i> <span class="nav-label">DESPACHO J2</span><span class="fa arrow"></span></a>\\n                    <ul class="nav nav-second-level collapse">\\n                        <li><a href="table_basic.html">Static Tables</a></li>\\n                        <li><a href="table_data_tables.html">Data Tables</a></li>\\n                        <li><a href="table_foo_table.html">Foo Tables</a></li>\\n                        <li><a href="jq_grid.html">jqGrid</a></li>\\n                    </ul>\\n                </li>\\n                \', escape=False)\n    pass\nresponse.write(\'      \\n            </ul>\\n\\n        </div>\\n    </nav>\\n\\n        <div id="page-wrapper" class="gray-bg">\\n        <div class="row border-bottom">\\n        <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">\\n\\n        <div class="navbar-header">\\n         <!--   <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a> -->\\n           \\n        </div> \\n\\n            <ul class="nav navbar-top-links navbar-right ">\\n              \\n\\n                <li>\\n                    <a href="\', escape=False)\nresponse.write(URL(\'default\', \'user\', args=(\'logout\')))\nresponse.write(\'">\\n                        <i class="fa fa-sign-out "></i> Cerrar Sesi\\xc3\\xb3n\\n                    </a>\\n                </li>\\n            </ul>\\n\\n        </nav>\\n        </div>\\n            <div class="row wrapper border-bottom white-bg page-heading">\\n                <div class="col-sm-12">\\n                    \', escape=False)\nresponse.write(\'\\n\\n                    \', escape=False)\nresponse.write(\'\\n\\n                   \\n                </div>\\n                \\n            </div>\\n\\n\\n            <div class="wrapper wrapper-content">\\n               \', escape=False)\nresponse.write(\'\\r\\n\', escape=False)\nresponse.write(ultimo)\nresponse.write(\'\\r\\n\', escape=False)\nresponse.write(ide_soli)\nresponse.write(\'idesoli <br>\\r\\n\', escape=False)\nresponse.write(ufecha)\nresponse.write(\'fecha soli <br>\\r\\nk=\', escape=False)\nresponse.write(k)\nresponse.write(\' <br>\\r\\n\\r\\n\', escape=False)\nfor x in range(-50,0):\n    response.write(\'\\r\\n\', escape=False)\n    response.write(n)\n    response.write(\' <br>\\r\\n\\t\\t\\r\\n\\t\', escape=False)\n    response.write(x)\n    response.write(\'\\r\\n\\t\', escape=False)\n    response.write(k)\n    response.write(\'\\r\\n\\t\', escape=False)\n    tiene=db(db.solicitud.id==n).select().first()\n    response.write(\'\\r\\n\\t\', escape=False)\n    fecha=tiene.fecha_solicitada\n    response.write(\'\\r\\n\\t\', escape=False)\n    numero=tiene.nro_certificado\n    response.write(\'\\r\\n\\r\\n\\t\', escape=False)\n    if numero!=None :\n        response.write(\'\\r\\n\\r\\n\\t\\r\\n\\t\\r\\n\\t\\r\\n\\r\\n\\r\\n\\r\\n\\t\\t\\r\\n\\r\\n\', escape=False)\n        pass\n    response.write(\'\\t\\t\\t\\r\\n\\t\\t\\t\\r\\n\\t\\t\\r\\n\\t\\t\\t\', escape=False)\n    response.write(\'\\n            </div>\\n            <div class="footer">\\n                <div class="float-right">\\n                    <strong>Copyright</strong> Div. Inform\\xc3\\xa1tica Dpto. Investigaciones Judiciales D-5 <strong>&copy;</strong> 2018\\n                </div>\\n                \\n            </div>\\n\\n        </div>\\n        </div>\\n\\n    <!-- Mainly scripts -->\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/jquery-3.1.1.min.js\'))\n    response.write(\'"></script>\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/popper.min.js\'))\n    response.write(\'"></script>\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/bootstrap.js\'))\n    response.write(\'"></script>\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/plugins/metisMenu/jquery.metisMenu.js\'))\n    response.write(\'"></script>\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/plugins/slimscroll_DA_PROBLEMAS/jquery.slimscroll.min.js\'))\n    response.write(\'"></script>\\n\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/plugins/dataTables/datatables.min.js\'))\n    response.write(\'"></script>\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/plugins/dataTables/dataTables.bootstrap4.min.js\'))\n    response.write(\'"></script>\\n\\n    <!-- Custom and plugin javascript -->\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/inspinia.js\'))\n    response.write(\'"></script>\\n    <script src="\', escape=False)\n    response.write(URL(\'static\', \'assets/js/plugins/pace/pace.min.js\'))\n    response.write(\'"></script>\\n\\n\\n   \\n\\n</body>\\n\\n\\n<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/empty_page.html by HTTrack Website Copier/3.x [XR&CO\\\'2014], Fri, 29 Jun 2018 13:54:48 GMT -->\\n</html>\\n\', escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__module__'
+p12
+S"'gluon.rocket'"
+p13
+sS'__getslice__'
+p14
+S"<method-wrapper '__getslice__' of SocketTimeout object>"
+p15
+sS'__str__'
+p16
+S"<method-wrapper '__str__' of SocketTimeout object>"
+p17
+sS'__reduce__'
+p18
+S'<built-in method __reduce__ of SocketTimeout object>'
+p19
+sS'__dict__'
+p20
+S'{}'
+p21
+sS'__sizeof__'
+p22
+S'<built-in method __sizeof__ of SocketTimeout object>'
+p23
+sS'__weakref__'
+p24
+S'None'
+p25
+sS'__init__'
+p26
+S"<method-wrapper '__init__' of SocketTimeout object>"
+p27
+sS'__setattr__'
+p28
+S"<method-wrapper '__setattr__' of SocketTimeout object>"
+p29
+sS'__reduce_ex__'
+p30
+S'<built-in method __reduce_ex__ of SocketTimeout object>'
+p31
+sS'__new__'
+p32
+S'<built-in method __new__ of type object>'
+p33
+sS'__format__'
+p34
+S'<built-in method __format__ of SocketTimeout object>'
+p35
+sS'__class__'
+p36
+S"<class 'gluon.rocket.SocketTimeout'>"
+p37
+sS'__doc__'
+p38
+S"'Exception for when a socket times out between requests.'"
+p39
+sS'__getitem__'
+p40
+S"<method-wrapper '__getitem__' of SocketTimeout object>"
+p41
+sS'__setstate__'
+p42
+S'<built-in method __setstate__ of SocketTimeout object>'
+p43
+sS'__getattribute__'
+p44
+S"<method-wrapper '__getattribute__' of SocketTimeout object>"
+p45
+sS'args'
+p46
+S"('Socket timed out before request.',)"
+p47
+sS'__subclasshook__'
+p48
+S'<built-in method __subclasshook__ of type object>'
+p49
+sS'__unicode__'
+p50
+S'<built-in method __unicode__ of SocketTimeout object>'
+p51
+sS'__delattr__'
+p52
+S"<method-wrapper '__delattr__' of SocketTimeout object>"
+p53
+sS'__repr__'
+p54
+S"<method-wrapper '__repr__' of SocketTimeout object>"
+p55
+sS'__hash__'
+p56
+S"<method-wrapper '__hash__' of SocketTimeout object>"
+p57
+ssS'evalue'
+p58
+S'Socket timed out before request.'
+p59
+sS'frames'
+p60
+(lp61
+(dp62
+S'file'
+p63
+S'D:\\web2py\\gluon\\rocket.py'
+p64
+sS'dump'
+p65
+(dp66
+S'self'
+p67
+S'<WSGIWorker(Thread-10, started daemon 2828)>'
+p68
+sS'conn'
+p69
+S'<gluon.rocket.Connection object>'
+p70
+sS'self.run_app'
+p71
+S'<bound method WSGIWorker.run_app of <WSGIWorker(Thread-10, started daemon 2828)>>'
+p72
+ssS'lnum'
+p73
+I1337
+sS'lines'
+p74
+(dp75
+I1332
+S'            # Enter connection serve loop'
+p76
+sI1333
+S'            while True:'
+p77
+sI1334
+S'                if __debug__:'
+p78
+sI1335
+S"                    self.err_log.debug('Serving a request')"
+p79
+sI1336
+S'                try:'
+p80
+sI1337
+S'                    self.run_app(conn)'
+p81
+sI1338
+S'                except:'
+p82
+sI1339
+S'                    exc = sys.exc_info()'
+p83
+sI1340
+S'                    handled = self._handleError(*exc)'
+p84
+sI1341
+S'                    if handled:'
+p85
+ssS'call'
+p86
+S'(self=<WSGIWorker(Thread-10, started daemon 2828)>)'
+p87
+sS'func'
+p88
+S'run'
+p89
+sa(dp90
+g63
+S'D:\\web2py\\gluon\\rocket.py'
+p91
+sg65
+(dp92
+S'self'
+p93
+S'<WSGIWorker(Thread-10, started daemon 2828)>'
+p94
+sS'self.environ'
+p95
+S"{'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;...e/apng,*/*;q=0.8,application/signed-exchange;v=b3', 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, br', 'HTTP_ACCEPT_LANGUAGE': 'es-ES,es;q=0.9,en;q=0.8', 'HTTP_CACHE_CONTROL': 'max-age=0', 'HTTP_CONNECTION': 'keep-alive', 'HTTP_COOKIE': 'session_id_welcome=127.0.0.1-f25bbe42-8772-4412-...ma=127.0.0.1-541d9449-d6ef-411b-817e-0d9109daae76', 'HTTP_HOST': '127.0.0.1:8000', 'HTTP_REFERER': 'http://127.0.0.1:8000/antecedentesplataforma/confeccion/procesar/3', 'HTTP_UPGRADE_INSECURE_REQUESTS': '1', 'HTTP_USER_AGENT': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 ...L, like Gecko) Chrome/73.0.3683.103 Safari/537.36', ...}"
+p96
+sS'sock_file'
+p97
+S'<socket._fileobject object>'
+p98
+sS'environ'
+p99
+S'undefined'
+p100
+sS'self.build_environ'
+p101
+S'<bound method WSGIWorker.build_environ of <WSGIWorker(Thread-10, started daemon 2828)>>'
+p102
+sS'conn'
+p103
+S'<gluon.rocket.Connection object>'
+p104
+ssg73
+I1830
+sg74
+(dp105
+I1825
+S'        else:'
+p106
+sI1826
+S'            sock_file = conn.makefile(BUF_SIZE)'
+p107
+sI1827
+S''
+sI1828
+S'        try:'
+p108
+sI1829
+S'            # Read the headers and build our WSGI environment'
+p109
+sI1830
+S'            self.environ = environ = self.build_environ(sock_file, conn)'
+p110
+sI1831
+S''
+sI1832
+S'            # Handle 100 Continue'
+p111
+sI1833
+S"            if environ.get('HTTP_EXPECT', '') == '100-continue':"
+p112
+sI1834
+S"                res = environ['SERVER_PROTOCOL'] + ' 100 Continue\\r\\n\\r\\n'"
+p113
+ssg86
+S'(self=<WSGIWorker(Thread-10, started daemon 2828)>, conn=<gluon.rocket.Connection object>)'
+p114
+sg88
+S'run_app'
+p115
+sa(dp116
+g63
+S'D:\\web2py\\gluon\\rocket.py'
+p117
+sg65
+(dp118
+S'sock_file'
+p119
+S'<socket._fileobject object>'
+p120
+sS'self.read_request_line'
+p121
+S'<bound method WSGIWorker.read_request_line of <WSGIWorker(Thread-10, started daemon 2828)>>'
+p122
+sS'self'
+p123
+S'<WSGIWorker(Thread-10, started daemon 2828)>'
+p124
+sS'request'
+p125
+g100
+ssg73
+I1650
+sg74
+(dp126
+I1645
+S'                                      "wsgiorg.futures": executor.futures})'
+p127
+sI1646
+S''
+sI1647
+S'    def build_environ(self, sock_file, conn):'
+p128
+sI1648
+S'        """ Build the execution environment. """'
+p129
+sI1649
+S'        # Grab the request line'
+p130
+sI1650
+S'        request = self.read_request_line(sock_file)'
+p131
+sI1651
+S''
+sI1652
+S'        # Copy the Base Environment'
+p132
+sI1653
+S'        environ = self.base_environ.copy()'
+p133
+sI1654
+S''
+ssg86
+S'(self=<WSGIWorker(Thread-10, started daemon 2828)>, sock_file=<socket._fileobject object>, conn=<gluon.rocket.Connection object>)'
+p134
+sg88
+S'build_environ'
+p135
+sa(dp136
+g63
+S'D:\\web2py\\gluon\\rocket.py'
+p137
+sg65
+(dp138
+S'global SocketTimeout'
+p139
+S"<class 'gluon.rocket.SocketTimeout'>"
+p140
+ssg73
+I1401
+sg74
+(dp141
+I1396
+S''
+sI1397
+S'                d = sock_file.readline()'
+p142
+sI1398
+S'                if PY3K:'
+p143
+sI1399
+S"                    d = d.decode('ISO-8859-1')"
+p144
+sI1400
+S'        except socket.timeout:'
+p145
+sI1401
+S"            raise SocketTimeout('Socket timed out before request.')"
+p146
+sI1402
+S'        except TypeError:'
+p147
+sI1403
+S'            raise SocketClosed('
+p148
+sI1404
+S"                'SSL bug caused closure of socket.  See '"
+p149
+sI1405
+S'                \'"https://groups.google.com/d/topic/web2py/P_Gw0JxWzCs".\')'
+p150
+ssg86
+S'(self=<WSGIWorker(Thread-10, started daemon 2828)>, sock_file=<socket._fileobject object>)'
+p151
+sg88
+S'read_request_line'
+p152
+sasS'pyver'
+p153
+S'Python 2.7.9: D:\\web2py\\web2py.exe (prefix: )'
+p154
+sS'etype'
+p155
+S"<class 'gluon.rocket.SocketTimeout'>"
+p156
+sS'date'
+p157
+S'Tue Apr 30 09:09:51 2019'
+p158
+sS'locals'
+p159
+(dp160
+S'sock_file'
+p161
+S'<socket._fileobject object>'
+p162
+sS'self'
+p163
+S'<WSGIWorker(Thread-10, started daemon 2828)>'
+p164
+sssS'traceback'
+p165
+S'Traceback (most recent call last):\n  File "D:\\web2py\\gluon\\rocket.py", line 1337, in run\n    self.run_app(conn)\n  File "D:\\web2py\\gluon\\rocket.py", line 1830, in run_app\n    self.environ = environ = self.build_environ(sock_file, conn)\n  File "D:\\web2py\\gluon\\rocket.py", line 1650, in build_environ\n    request = self.read_request_line(sock_file)\n  File "D:\\web2py\\gluon\\rocket.py", line 1401, in read_request_line\n    raise SocketTimeout(\'Socket timed out before request.\')\nSocketTimeout: Socket timed out before request.\n'
+p166
+s.

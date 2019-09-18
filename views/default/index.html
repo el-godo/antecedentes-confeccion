@@ -1,0 +1,228 @@
+{{extend 'layout1.html'}}
+
+
+<style>
+
+  div.dataTables_wrapper div.dataTables_info {
+    padding-top: 50px;
+    white-space: nowrap;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+    padding-top: 70px;
+
+
+}
+
+.pagination {
+    display: -ms-flexbox;
+    display: inline-flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+</style>
+
+
+
+
+{{block header}}
+    <h2>Página de Inicio</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='index')}}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Inicio</strong>
+      </li>
+    </ol>
+{{end}}
+
+  
+
+
+
+
+
+<div class="row animated fadeInRightBig">
+  <div class="col-lg-2">
+    <div class="widget style1 navy-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+
+          <i class="fa fa-laptop fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL(c='entrada',f='entrada')}}" style="color: #FFF">Mesa de entrada</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2">
+    <div class="widget style1 yellow-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa-folder-open fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+
+          <h5 class="font-bold"><a href="{{=URL(c='archivo',f='form_archivo')}}" style="color: #FFF">Archivo</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2">
+    <div class="widget style1 blue-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+
+
+          <i class="fa fa-newspaper-o fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL(c='confeccion',f='confeccion')}}" style="color: #FFF">Confeccion</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-2">
+    <div class="widget style1 red-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+
+          <i class="fa fa-group  fa-2x" aria-hidden="true"></i>
+          
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL(c='confeccion',f='panel')}}" style="color: #FFF">Usuarios</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <div class="col-lg-2">
+  
+  </div>
+  <div class="col-lg-2">
+    
+  </div>
+  
+  <div class="col-lg-2">
+   
+  </div>
+</div>
+
+  
+
+<br><br>
+
+<h3 class="animated fadeInUp">Listado de Usuarios del Sistema</h3>
+<br>
+
+
+<div class="ibox-content">
+  <a href="{{=URL(c='usuario',f='nuevo')}}" class="btn btn-outline btn-success row animated fadeInRightBig">
+  <span class="fa fa-upload"></span> Agregar Nuevo Usuario</a><br><br>
+  <div class="table-responsive">
+
+    <div class="well">
+      <table class="table table-striped" id="myTable">
+        <thead>
+          <tr>
+            <th>Oficina</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Usuario</th>
+            <th>Dni</th>
+            <th></th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+ 
+  <hr>
+ 
+
+</div>
+
+<br>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript" ></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript" ></script>
+
+
+<script>
+       
+
+    $(document).ready( function () {
+
+        $.extend(true, $.fn.dataTable.defaults,{
+            "info":true,
+            "paging": true,
+            "ordering":true,
+            "searching": true,
+            "language": {
+                "url": "Spanish.json"
+            },
+            lengthMenu: [
+                [10,20,50,100,500,-1], [10,20,50,100,500,'Todos']
+            ]
+
+        });
+
+        table=$('#myTable').DataTable({
+            "stateSave": false,
+            "scrollY": "40vh",
+            "paging": true,
+           /* "ajax": {
+                "url": "[=XML(mf)]",
+                "dataSrc": "" // Con esto puedo cargar el jason sin que tenga el {"data": ...}
+            },*/
+
+            "data": {{=XML(mf)}}, // Aqui se puede ver que puedo cargar el jason puro en una variable y luego usar esa variable*/
+
+            
+      "columns":[
+        {name:"oficina", data:"oficina"},
+        {name:"first_name", data:"first_name"},
+        {name:"last_name", data:"last_name"},
+        {name:"email", data:"email"},
+        {name:"username", data:"username"},
+        {name:"dni", data:"dni"},
+        {defaultContent: '<button type="button" class="editar btn btn-warning btn-xs" >Editar</button> &nbsp;<button type="button" class="eliminar btn btn-danger btn-xs">Eliminar</button>'}
+      ],  
+        });
+
+        $('#myTable tbody').on( 'click', 'button.editar', function(){
+                var data = table.row( $(this).parents('tr')).data();
+                var url = '{{=URL(c='usuario', f='editar')}}' + '/' + data.id;
+                window.location = url
+               
+                
+            });
+
+        $('#myTable tbody').on( 'click', 'button.eliminar', function(){
+                var data = table.row( $(this).parents('tr')).data();
+                var url = '{{=URL(c='usuario', f='eliminar')}}' + '/' + data.id;
+                window.location = url
+               
+                
+            });
+
+        } );
+
+      
+
+        
+  </script>

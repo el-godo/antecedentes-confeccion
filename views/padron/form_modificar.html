@@ -1,0 +1,187 @@
+{{extend 'layout1.html'}}
+<style>
+	#t_antece__error{color:#f3f3f4;
+		font-size:16px;background: red;}
+	#donde__error{color:#f3f3f4;
+		font-size:16px;background: red;}
+	#clase__error{color:#f3f3f4;
+		font-size:16px;background: red;}
+	#tipo__error{color:#f3f3f4;
+		font-size:16px;background: red;}
+	#e_civil__error{color:#f3f3f4;
+		font-size:16px;background: red;}
+	#pais__error	{color:#f3f3f4;
+		font-size:16px;background: red;}
+	#nprontuario__error	{color:#f3f3f4;
+		font-size:16px;background: red;}
+
+		
+
+	
+</style>
+
+
+
+
+
+
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confecciòn</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='index')}}">Home</a>
+    </li>
+     <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='index')}}">Modificar datos padron</a>
+    </li>
+    <li class="breadcrumb-item active">
+		<strong>Formulario de Modificacion del Padron</strong>
+    </li>
+</ol>
+{{end}}
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-lg-4">
+
+
+	</div>
+	<div class="col-lg-12">
+		<div class="ibox ">
+			<div class="ibox-title">
+				<h5>Formulario</h5> <span class="label label-success"><i class="fa fa-hand-o-up"></i></span>
+			</div>
+
+			<div class="ibox-content">
+				<br>
+				
+					{{=form.custom.begin}}
+			<div class="row">
+				<div class="col-md-6">
+				    <div class="form-group">
+				    	 <label><strong>Dni:</strong></label>
+				        {{form.custom.widget.dni["_style"] = "number"}}
+				        {{=form.custom.widget.dni}}		        
+				    </div>
+				</div>
+
+				<div class="col-md-6">    
+				    <div class="form-group">
+				    	 <label><strong>Pasaporte:</strong></label>
+				         {{form.custom.widget.pasaporte}}
+				         {{=form.custom.widget.pasaporte}}
+				    </div>
+				</div> 
+			</div>
+			<div class="row"> 	
+				<div class="col-md-6">       
+				    <div class="form-group">
+				    	 <label><strong>Tipo de Prontuario:</strong></label>
+				         {{form.custom.widget.tipo}}
+				         {{=form.custom.widget.tipo}}
+				    </div>
+				</div>
+				<div class="col-md-6">          
+				    <div class="form-group">
+				    	 <label><strong>Nùmero de Prontuario:</strong></label>
+				         {{form.custom.widget.nprontuario}}
+				         {{=form.custom.widget.nprontuario}}
+				    </div>
+				</div>
+			</div>
+			<div class="row">	 
+				<div class="col-md-6">    
+				    <div class="form-group">
+				          <label><strong>Apellido:</strong></label>
+				          {{form.custom.widget.apellido["_type"] = "uppercase"}}
+				         {{=form.custom.widget.apellido}}
+				    </div>
+				 </div>
+				<div class="col-md-6">        
+				    <div class="form-group">
+				          <label><strong>Nombre:</strong></label>
+				          {{form.custom.widget.nombre["_type"] = "uppercase"}}
+				         {{=form.custom.widget.nombre}}
+				    </div>
+				</div> 
+			</div>
+			<div class="row">
+
+				<div class="col-md-6">     
+				    <div class="form-group">
+				          <label><strong>Domicilio:</strong></label>
+				          {{form.custom.widget.domicilio["_type"] = "uppercase"}}
+				         {{=form.custom.widget.domicilio}}
+				    </div>
+				</div> 
+
+				<div class="col-md-6">      
+				    <div class="form-group">
+				    <label><strong>Estado Civil:</strong></label>
+				         {{form.custom.widget.e_civil}}
+				         {{=form.custom.widget.e_civil}}
+				    </div> 
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-md-6">        
+				    <div class="form-group">
+				    <label><strong>Clase:</strong></label>
+				         {{form.custom.widget.clase}}
+				         {{=form.custom.widget.clase}}
+				    </div>
+				</div>
+				<div class="col-md-6">     
+				    <div class="form-group">
+				    <label><strong>Nacionalidad</strong></label>
+				         {{form.custom.widget.pais}}
+				         {{=form.custom.widget.pais}}
+				    </div>   
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-md-6">        
+				    <div class="form-group">
+				    <label><strong>Profesion:</strong></label>
+				         {{form.custom.widget.profesion}}
+				         {{=form.custom.widget.profesion}}
+				    </div>
+				</div>
+				<div class="col-md-6">     
+				    <div class="form-group">
+				    <label><strong>Genero</strong></label>
+				         {{form.custom.widget.genero}}
+				         {{=form.custom.widget.genero}}
+				    </div>   
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				
+				<div class="col-md-6">           
+				    <div class="form-group">
+				    	 <button type="submit" class="btn btn-info ">Guardar</button>
+                    
+                    
+                    {{=form.custom.end}}
+                    </div>
+                </div>      
+
+			</div>
+
+	</div>
+</div>
+
+
+
+
+
+
+

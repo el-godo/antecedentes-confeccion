@@ -1,0 +1,126 @@
+{{extend 'layout1.html'}}
+
+
+<style>
+
+  div.dataTables_wrapper div.dataTables_info {
+    padding-top: 50px;
+    white-space: nowrap;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+    padding-top: 70px;
+
+
+}
+
+.pagination {
+    display: -ms-flexbox;
+    display: inline-flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+</style>
+
+
+
+
+
+
+
+
+{{block header}}
+    <h2>Página de Inicio - Sistema Confeccion de Antecedentes</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='panel')}}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Mesa de Entrada</strong>
+      </li>
+    </ol>
+{{end}}
+
+
+
+
+                  
+
+
+<h3 class="animated fadeInUp">Panel Mesa de Entrada</h3>
+<br>
+
+
+
+<div class="row animated fadeInRightBig">
+  <div class="col-lg-2">
+    <div class="widget style1 navy-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa-check-square-o fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL('entrada', 'ingreso')}}" style="color: #FFF">Generar Solicitud</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2">
+    <div class="widget style1 red-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa fa-eye fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL('entrada', 'form_ver_estado')}}" style="color: #FFF">Ver Estado</a></h5>
+        </div>
+      </div>
+    </div>
+
+
+  
+ 
+</div>
+<div class="col-lg-2">
+    <div class="widget style1 blue-bg">
+      <div class="row vertical-align">
+        <div class="col-2">
+          <i class="fa fa-folder-open fa-2x"></i>
+        </div>
+        <div class="col-10 text-right">
+          <h5 class="font-bold"><a href="{{=URL('entrega', 'entrega')}}" style="color: #FFF">Entregar Certificados</a></h5>
+        </div>
+      </div>
+    </div>
+
+
+
+<!------------------------------- -->
+<!------------------------------- -->
+<br>
+<br>
+<br>
+
+
+
+ 
+
+</div>
+
+<br>
+
+
+
+
+
+       
+
+            
+      
+
+        

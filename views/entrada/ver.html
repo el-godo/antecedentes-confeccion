@@ -1,0 +1,89 @@
+{{extend 'layout1.html'}}
+<style>
+  .swal-modal { width:90% !important;
+    }
+  #tabla{ font-size: 12px;
+
+  }
+ 
+</style>
+
+<div class="contenedor" id="contenedor">
+
+<div class="row animated fadeInRightBig" align: center>
+  <div class="conte"></div>
+
+               
+            </div><div class="swal-overlay swal-overlay--show-modal" tabindex="-1">
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--success">
+    <span class="swal-icon--success__line swal-icon--success__line--long"></span>
+    <span class="swal-icon--success__line swal-icon--success__line--tip"></span>
+
+    <div class="swal-icon--success__ring"></div>
+    <div class="swal-icon--success__hide-corners"></div>
+  </div><div class="swal-title" >
+    <div class="ibox-content">
+
+  <table class="table table-bordered" id="tabla">
+    <strong><h2>Retira</h2></strong>
+    <thead>
+      <tr>        
+        
+
+        
+        
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DNI</th>
+        <th>Nº Certificado</th>
+        <th>Fecha de Entrega</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{=retira_nom}}</td>
+        <TD></TD>
+        <th>{{=retira_dni}}</th>
+        <td> {{=ncer}}</td>
+        <td>{{=fecha}}</td>
+       
+        
+        
+          
+         
+          
+        </td>
+
+        
+
+
+      </tr>
+
+      
+    </tbody>
+    
+  </table> 
+</div>       
+  </div><div class="swal-text" style=""> <div class="ibox-content">
+  
+  </div><div class="swal-footer"><div class="swal-button-container">
+<a href="javascript:history.back()"  class="swal-button swal-button--confirm">OK</a>
+ 
+ <br>
+ <br>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div>
+  </div>
+  </div>
+  </div>
+
+
+

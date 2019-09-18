@@ -1,0 +1,45 @@
+{{extend 'layout1.html'}}
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href="{{=URL(c='default',f='index')}}">Home</a>
+	</li>
+	<li class="breadcrumb-item active">
+		<strong>solicitud</strong>
+	</li>
+</ol>
+{{end}}
+<div class="ibox-content">
+	
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				
+
+				
+
+				
+				<th>Dni/Pasaporte</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Tipo</th>
+				<th>Prontuario Nº</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				
+				<td>{{=dnpa}}</td>
+				<td>{{=apellido}}</td>
+				<td>{{=nombre}}</td>
+				<td>{{=tipo}}</td>
+				<td>{{=nprontuario}}</td>
+
+
+			</tr>
+			
+		</tbody>
+	</table>
+
+	

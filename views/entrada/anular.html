@@ -1,0 +1,102 @@
+{{extend 'layout1.html'}}
+<script type="text/javascript">
+$(document).ready(function(){
+  
+    $("#myModal").modal('show');
+  
+});
+
+</script>
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+{{block header}}
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="{{=URL(c='default',f='index')}}">Home</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="{{=URL(c='entrada',f='entrada')}}">Mesa de Entrada</a>
+  </li>
+  <li class="breadcrumb-item active">
+    <strong>Ver Estado</strong>
+  </li>
+</ol>
+{{end}}
+<div class="ibox-content">
+	<table class="table table-bordered">
+    <thead>
+      <tr>
+        
+
+        
+        
+
+        
+        <th>Dni/Pasaporte</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Tipo</th>
+        <th>Prontuario Nº</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        
+        <td>{{=dnpa}}</td>
+        <td>{{=apellido}}</td>
+        <td>{{=nombre}}</td>
+        <td>{{=tipo}}</td>
+        <td>{{=nprontuario}}</td>
+        <td>{{=estado}}</td>
+        <th></th>
+        <td>
+          
+          
+        </td>
+
+        
+
+
+      </tr>
+
+      
+    </tbody>
+    
+  </table>
+  
+<div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                
+                <i class="fa fa-warning modal-icon"></i>
+                <h3 class="modal-title text-warning"><br></h3>
+                
+            </div>
+            <div class="modal-body">
+                
+                <div class="alert alert-warning">
+                    <h3><p><strong>La solicitud fue anulada</strong><strong> </h3>
+                    
+                </div>
+                   
+            </div>
+            <div class="modal-footer">  
+                   
+                 
+                <a href="{{=URL('entrada', 'form_ver_estado')}}" class=" btn btn-success btn-xs" >Aceptar</a>
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+</div>         
+
+  
+  
+
+
+</div>

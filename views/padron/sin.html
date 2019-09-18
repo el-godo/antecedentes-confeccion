@@ -1,0 +1,47 @@
+{{extend 'layout1.html'}}
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="{{=URL(c='default',f='index')}}">Home</a>
+  </li>
+  <li class="breadcrumb-item active">
+    <strong>solicitud</strong>
+  </li>
+</ol>
+{{end}}
+<div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                
+                <i class="fa fa-warning modal-icon"></i>
+                <h3 class="modal-title text-warning"> Atencion<br></h3>
+                
+            </div>
+            <div class="modal-body">
+                
+                <div class="alert alert-warning">
+                    <h3><p><strong>El Dni/Pasaporte No se encuntra registrado</strong><strong> </h3>
+                    
+                </div>
+                <h3>¿Desea registrarlo?</h3>
+                   
+            </div>
+            <div class="modal-footer">  
+
+                   
+                 
+                <a href="{{=URL('padron', 'nuevo',args=[dnpa])}}" class=" btn btn-success btn-xs" >Reistrar Persona</a>
+                <a href="{{=URL('entrada', 'ingreso')}}" class=" btn btn-success btn-xs" >No Registrar</a>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+  
+  </div>
+
+
+

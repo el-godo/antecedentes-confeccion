@@ -1,0 +1,935 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> name 'dni_padron' is not defined"
+p3
+sS'layer'
+p4
+S'D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py'
+p5
+sS'code'
+p6
+S'\nfrom reportlab.pdfgen import canvas\n# def encabezado():\n# \tpdf="con_antecedentes.pdf"#largo,alto#defino como se va a llamar el arhivo pfg\n# \toficio=(612,1010) #configuro los tama\xc3\xb1os de la hoja oficio \n# \t#A4=612.0, 792.0 \n# \tdoc = canvas.Canvas(pdf,pagesize=oficio)\n# \tmargen=db(db.margenes).select().first()\n# \tx = margen.x\n# \tlargo=612.0\t\n# \ty =margen.y\n# \talto=1010  \n\t\n# \treturn dict()\n\ndef sin_antecedentes():\n\t\t#importo para poner la fecha\n\tfrom datetime import *    \n    \thoyfecha=datetime.today() #capturo la fecha de hoy\n    \tdia=hoyfecha.day #capturo el dia\n    \tdia=str(dia)#paso el dia a string\n    \tmes=hoyfecha.month #capturo el mes\n    \tmes=str(mes)#paso el dia a string\n    \t#creo un diccionario para reemplazar el numero del mes por el nombre del mes\n    \tmeses={"1":"ENERO","2":"FEBRERO","3":"MARZO","4":"ABRIL","5":"MAYO","6":"JUNIO","7":"JULIO","8":"AGOSTO","9":"SEPTIEMBRE","10":"OCTUBRE","11":"NOVIEMBRE","12":"DICIEMBRE"}\n    \t\n    \tqmes=meses[mes]# reemplazo el numero del mes en el diccionario mes\n    \tanio=hoyfecha.year #capturo el a\xc3\xb1o\n    \tanio=str(anio)\t#paso el a\xc3\xb1o a string para pornerlo en el pdf\n\tide_padron=request.args[1]\t#traigo el argumento del id del padron\n\tide_soli=request.args[0] \t#traigo el argumento del id de la solicitud\n\tdni=request.args[2] \t\t#traigo el dni de la persona\n\tDNI=str(dni)\t\t\t\t#paso el dni a string para ponerlo en el pdf\n\tpa=db(db.padron.id==ide_padron).select().first() #realizo un set para sacar los datos de la tabla padron\n\tape=pa.Apellido \t#capturo el apellido\n\tape=ape+","\t\t\t#le agrego una coma al apellido\n\tnom=pa.Nombre \t\t#capturo el nombre\n\tclase=pa.Clase \t\t#capturo la clase\n\tclase=str(clase) \t#paso la clase a string para ponerlo en el pdf\n\tdni=pa.DocumentoNro\t#capturo el dni\n\tdni=str(dni)\t\t#paso el dni a string para ponerlo en el pdf\n\tpasa=pa.Pasaporte\t#capturo el pasaporte\n\tpasa=str(pasa)\t\t#paso el pasaporte a string\n\tnacion=pa.IdPais\t#saco el id del pais \t\n\tpaises=db(db.paises.id==nacion).select().first()# hago un set para sacar el pais\n\tpais=paises.pais \t#saco el nombre del pais\n\tvil={"S":"SOLTERO/A","C":"CASADO/A","D":"DIVORSIADO/A","V":"VIUDO/A"} #creo un diccionario \t\n\tcivil=pa.EstadoCivil\t# capturo el estado civil\n\te_civil=vil[civil]#reemplazo en el diccionario vil\t\n\tprof=pa.Profesion  #saco la profesion\n\tdirec=pa.Direccion #saco la direccion\n\tclave={\'1\':"A.G.",\'2\':"C.I.",\'3\':"D.C.P.",\'4\':"D.E.",\'5\':"R.C.",\'6\':"S.P.",\'0\':None} #creo un diccionario para los tipos de prontuario\n\ttipo=pa.IdProntuarioTipo #saco el id del tipo de prontuario\n\ttipo=str(tipo)\t#\n\tnpront=pa.ProntuarioNro\n\tnpront=str(npront)\n\tqtipo=clave[tipo]\t\n\tsol=db(db.solicitud.id==ide_soli).select().first()\n\tsolipor=sol.solicitado_por\n\tnum=sol.nro_certificado\n\tcapital=sol.capitalinterior\n\tintervino=sol.intervino\n\tfecha=sol.fecha_solicitada\t\n\tuser=sol.usuario\n\ttiene=sol.t_antecedentes\n\tante=sol.antecedentes\n\tsol.update_record(estado_solicitud="Impreso")\n\t#Importamos los modulos necesarios\n\tfrom reportlab.pdfgen import canvas# clase para crear el documento\n\tfrom reportlab.lib.colors import white,red,green,blue,gray,black#colores\t\n\tfrom os import startfile\t\n\tpdf="ej.pdf"#largo,alto#defino como se va a llamar el arhivo pfg\n\tcertificado=(602,620) #configuro los tama\xc3\xb1os de la hoja del certificado\n\tdoc = canvas.Canvas(pdf,pagesize=certificado)\n\tmargen=db(db.margenes).select().first()\n\tx = margen.x\n\tlargo=602\n\ty =margen.y\n\talto=620\n\tdoc.setFont("Courier", 10)#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(110+x,455+y,ape)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(155+x,455+y,nom)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(270+x,438+y,clase)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(373+x,438+y,dni)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(173+x,420+y,pais)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(380+x,420+y,e_civil)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(157+x,406+y,prof)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(160+x,390+y,direc)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(175+x,360+y,qtipo+npront)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(90+x,255+y,solipor)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(360+x,240+y,dia)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(160+x,225+y,qmes)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(360+x,225+y,anio)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(160+x,205+y,num)#para poner texto valores x,y\n\n\tdoc.setFont("Courier",10)\t#fuente de letra y tama\xc3\xb1o\n\tdoc.drawString(95+x,120+y,intervino)#para poner texto valores x,y\n\tdoc.showPage()\n\tdoc.save()\n\tstartfile(pdf)                    \n\treturn dict()\n\t\n\n\ndef dame_un_pdf():\n\tfrom datetime import *\n\tfrom reportlab.platypus import *\n\tfrom reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle\n\tfrom reportlab.rl_config import defaultPageSize\n\tfrom reportlab.lib.units import inch, mm\n\tfrom reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY\n\tfrom reportlab.lib import colors\n\tfrom uuid import uuid4\n\tfrom cgi import escape\n\timport os\n\tpdf="con_antecedentes.pdf"#largo,alto#defino como se va a llamar el arhivo pfg\n\toficio=(612,1010) #configuro los tama\xc3\xb1os de la hoja oficio\n\tdoc = canvas.Canvas(pdf,pagesize=oficio)\n\n\tide_padron=request.args[1]\t#traigo el argumento del id del padron\n\tide_soli=request.args[0] \t#traigo el argumento del id de la solicitud\n\tdni=request.args[2] \n\t\n\thoyfecha=datetime.today() #capturo la fecha de hoy\n    \tdia=hoyfecha.day #capturo el dia\n     \tdia=str(dia)#paso el dia a string\n    \tmes=hoyfecha.month #capturo el mes\n    \tmes=str(mes)#paso el dia a string\n\n    \t#creo un diccionario para reemplazar el numero del mes por el nombre del mes\n    \tmeses={"1":"ENERO","2":"FEBRERO","3":"MARZO","4":"ABRIL","5":"MAYO","6":"JUNIO","7":"JULIO","8":"AGOSTO","9":"SEPTIEMBRE","10":"OCTUBRE","11":"NOVIEMBRE","12":"DICIEMBRE"}\n    \t\n    \tqmes=meses[mes]# reemplazo el numero del mes en el diccionario mes\n    \tanio=hoyfecha.year #capturo el a\xc3\xb1o\n    \tanio=str(anio)\t#paso el a\xc3\xb1o a string para pornerlo en el pdf\n    ####################################################################################################################################\n    \tpa=db(db.padron.id==ide_padron).select().first() #realizo un set para sacar los datos de la tabla padron\n\n\tape=pa.Apellido \t#capturo el apellido\n\tape=ape+","\t\t\t#le agrego una coma al apellido\n\tnom=pa.Nombre \t\t#capturo el nombre\n\tclase=pa.Clase \t\t#capturo la clase\n\tclase=str(clase) \t#paso la clase a string para ponerlo en el pdf\n\tdni=pa.DocumentoNro\t#capturo el dni\n\tdni=str(dni)\t\t#paso el dni a string para ponerlo en el pdf\n\tpasa=pa.Pasaporte\t#capturo el pasaporte\n\tpasa=str(pasa)\t\t#paso el pasaporte a string\n\tnacion=pa.IdPais\t#saco el id del pais \t\n\tpaises=db(db.paises.id==nacion).select().first()# hago un set para sacar el pais\n\tpais=paises.pais \t#saco el nombre del pais\n\tvil={"S":"SOLTERO/A","C":"CASADO/A","D":"DIVORSIADO/A","V":"VIUDO/A"} #creo un diccionario \t\n\tcivil=pa.EstadoCivil\t# capturo el estado civil\n\te_civil=vil[civil]#reemplazo en el diccionario vil\t\n\tprof=pa.Profesion  #saco la profesion\n\tdirec=pa.Direccion #saco la direccion\n\tclave={\'1\':"A.G.",\'2\':"C.I.",\'3\':"D.C.P.",\'4\':"D.E.",\'5\':"R.C.",\'6\':"S.P.",\'0\':None} #creo un diccionario para los tipos de prontuario\n\ttipo=pa.IdProntuarioTipo #saco el id del tipo de prontuario\n\ttipo=str(tipo)\t#\n\tnpront=pa.ProntuarioNro\n\tnpront=str(npront)\n\tqtipo=clave[tipo]\n\t######################################################################################################################################\t\n\tsol=db(db.solicitud.id==ide_soli).select().first()\n\tsolipor=sol.solicitado_por\n\tnum=sol.nro_certificado\n\tcapital=sol.capitalinterior\n\tintervino=sol.intervino\n\tfecha=sol.fecha_solicitada\t\n\tuser=sol.usuario\n\ttiene=sol.t_antecedentes\n\tante=sol.antecedentes\n\t#cambio el estado a impreso\n\tsol.update_record(estado_solicitud="Impreso")\n\n\t#cargo las imagenes###################################################################################################\n\n    \t#~ #Una imagen.\n\timagen_logo = Image("d:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\static\\\\images\\\\encabezado.jpg", width=500, height=80)\n\timagen_firma = Image("d:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\static\\\\images\\\\firma.jpg", width=500, height=100)\n\t##############################################################################################################################\n\n\t###############################################################################################################################\n\t#tabla\n\tdatos = (\n        (\'INTERVINO\', \'\'),\n        (intervino,\'\'),\n        (\'\',\'\'),\n        (\'\',\'\')\n    \t)\n\ttabla = Table(data = datos,\n              style = [\n                       (\'GRID\',(0,0),(-1,-1),0.5,colors.black),\n                       (\'BOX\',(0,0),(-1,-1),2,colors.black),\n                       (\'BACKGROUND\', (0, 0), (-1, 0), colors.grey),\n                       (\'ALIGNMENT\', (0,0), (-1,1), \'CENTER\'),\n                       (\'TOPPADDING  \', (0,0), (-1,1), ), #TOP, MIDDLE o BOTTOM\n                       ],\n                        hAlign=\'LEFT\'#alinar a la izquierda\n              )\n\t###############################################################################################################################\n\n    \t\n    \t\n\n    \tstyles = getSampleStyleSheet()\n\n    \tstyles.add(ParagraphStyle(name=\'Justify\', alignment=TA_JUSTIFY,fontName=\'Helvetica\',fontSize=10))\n\n\n    \tarchivotmp=os.path.join(request.folder,\'private\',str(uuid4()))\n    \tdoc = SimpleDocTemplate(archivotmp)\n    \tstory = []\n    \tespacio=""\n    \tstory.append(imagen_logo)\n    \t\n    \t#story.append(Paragraph(escape(texto),styles["Justify"]))\n    \tstory.append(Spacer(1,0.5*inch))\n    \tstory.append(Paragraph(escape("Los funcionarios policiales que suscriben Certifican:"),styles["Justify"]))\n    \tstory.append(Spacer(1,0.5*inch))\n    \tstory.append(Paragraph(escape("Que "+ape+nom+" Clase: "+clase+" D.N.I: "+dni+" de Nacionalidad "+pais\n    \t\t+" de estado civil: "+e_civil+" de profesi\xc3\xb2n "+prof+" con domicilio: "+direc\n    \t\t+" Se encuentra identificado/a en esta Policia bajo el Prontuario: "+qtipo+" N\xc2\xba "+npront ),styles["Justify"]))\n    \tstory.append(Spacer(1,0.5*inch))\n    \t\n    \tstory.append(Paragraph(escape("OBSERVACIONES:"),styles["Justify"]))\n    \tstory.append(Paragraph(escape(ante),styles["Justify"]))\n    \tstory.append(Spacer(1,0.5*inch))\n\n    \tstory.append(Paragraph(escape("A solicitud de la parte interesada y al solo efecto de ser presentada en : "+\n    \t\tsolipor+"."+"Expiden el presente en la Ciudad de San Fernando del Valle de Catamarca(R.A.), con fecha: "\n    \t\t+dia+"/"+mes+"/"+anio +" Cert. N\xc2\xba "+num),styles["Justify"]))\n    \tstory.append(Spacer(1,0.5*inch))\n    \tstory.append(Paragraph(escape("Se expide conforme Ley N\xc2\xba4663, Art.8 Inc.\'C\'.-"),styles["Justify"]))\n    \tstory.append(Spacer(1,0.1*inch))\n    \t\n\tstory.append(tabla)\n\tstory.append(imagen_firma)\n\n\n    \tdoc.build(story)\n    \tdata = open(archivotmp,"rb").read()\n    \tos.unlink(archivotmp)\n    \tresponse.headers[\'Content-Type\']=\'application/pdf\'\n    \tredirect(URL(c=\'confeccion\',f=\'pre_imprimir\',args=[ide_soli,ide_padron,dni_padron]))\n\n\treturn data\n\n\n    \t\n    \t\n    \t\n    \t\n\n# def txt():\n# \t\t#importo para poner la fecha\n# \tfrom datetime import *\n# \timport os\n    \n#     \thoyfecha=datetime.today() #capturo la fecha de hoy\n#     \tdia=hoyfecha.day #capturo el dia\n#     \tdia=str(dia)#paso el dia a string\n#     \tmes=hoyfecha.month #capturo el mes\n#     \tmes=str(mes)#paso el dia a string\n#     \t#creo un diccionario para reemplazar el numero del mes por el nombre del mes\n#     \tmeses={"1":"ENERO","2":"FEBRERO","3":"MARZO","4":"ABRIL","5":"MAYO","6":"JUNIO","7":"JULIO","8":"AGOSTO","9":"SEPTIEMBRE","10":"OCTUBRE","11":"NOVIEMBRE","12":"DICIEMBRE"}\n    \t\n#     \tqmes=meses[mes]# reemplazo el numero del mes en el diccionario mes\n#     \tanio=hoyfecha.year #capturo el a\xc3\xb1o\n#     \tanio=str(anio)\t#paso el a\xc3\xb1o a string para pornerlo en el pdf\n# \tide_padron=request.args[1]\t#traigo el argumento del id del padron\n# \tide_soli=request.args[0] \t#traigo el argumento del id de la solicitud\n# \tdni=request.args[2] \t\t#traigo el dni de la persona\n# \tDNI=str(dni)\t\t\t\t#paso el dni a string para ponerlo en el pdf\n# \tpa=db(db.padron.id==ide_padron).select().first() #realizo un set para sacar los datos de la tabla padron\n# \tape=pa.Apellido \t#capturo el apellido\n# \tape=ape+","\t\t\t#le agrego una coma al apellido\n# \tnom=pa.Nombre \t\t#capturo el nombre\n# \tclase=pa.Clase \t\t#capturo la clase\n# \tclase=str(clase) \t#paso la clase a string para ponerlo en el pdf\n# \tdni=pa.DocumentoNro\t#capturo el dni\n# \tdni=str(dni)\t\t#paso el dni a string para ponerlo en el pdf\n# \tpasa=pa.Pasaporte\t#capturo el pasaporte\n# \tpasa=str(pasa)\t\t#paso el pasaporte a string\n# \tnacion=pa.IdPais\t#saco el id del pais \t\n# \tpaises=db(db.paises.id==nacion).select().first()# hago un set para sacar el pais\n# \tpais=paises.pais \t#saco el nombre del pais\n# \tvil={"S":"SOLTERO/A","C":"CASADO/A","D":"DIVORSIADO/A","V":"VIUDO/A"} #creo un diccionario \t\n# \tcivil=pa.EstadoCivil\t# capturo el estado civil\n# \te_civil=vil[civil]#reemplazo en el diccionario vil\t\n# \tprof=pa.Profesion  #saco la profesion\n# \tdirec=pa.Direccion #saco la direccion\n# \tclave={\'1\':"A.G.",\'2\':"C.I.",\'3\':"D.C.P.",\'4\':"D.E.",\'5\':"R.C.",\'6\':"S.P.",\'0\':None} #creo un diccionario para los tipos de prontuario\n# \ttipo=pa.IdProntuarioTipo #saco el id del tipo de prontuario\n# \ttipo=str(tipo)\t#\n# \tnpront=pa.ProntuarioNro\n# \tnpront=str(npront)\n# \tqtipo=clave[tipo]\t\n# \tsol=db(db.solicitud.id==ide_soli).select().first()\n# \tsolipor=sol.solicitado_por\n# \tnum=sol.nro_certificado\n# \tcapital=sol.capitalinterior\n# \tintervino=sol.intervino\n# \tfecha=sol.fecha_solicitada\t\n# \tuser=sol.usuario\n# \ttiene=sol.t_antecedentes\n# \tante=sol.antecedentes\n\t\n# \tfile = open("txt.txt", "w")\n# \tfile.write("Los Funcionarios Policiales que suscriben Certifican: \\n")\n# \tfile.write( "\\n" )\n# \tfile.write( "" +os.linesep)#espacion en blanco\n# \tfile.write("Que "+ ape+ nom + " Clase " +clase +" D.N.I. N\xc2\xba :" +dni +" de nacionalidad:"+ os.linesep)\n# \tfile.write(pais+" de estado civil: "+e_civil+" de profesion: "+prof+ os.linesep)\n# \tfile.write("con domicilio: "+direc+ os.linesep)\n\n# \tfile.write("Se encuentra indentificado/a en esta policia bajo Promtuario:"+ os.linesep )\n# \tfile.write(qtipo+" "+npront+ os.linesep )\n# \tfile.write("Observaciones:"+os.linesep )\n\t\n# \tfile.write(ante)\n# \tfile.write("A solicitud de la parte interesada y al solo efecto de ser presentada en: "+ os.linesep)\n# \tfile.write( solipor+"." +os.linesep)\n# \tfile.write( "Expiden el presente en la Ciudad de San Fernando del Valle de Catamarca(R.A.), con fecha:"+dia+"/"+mes+"/"+anio +os.linesep)\n# \tfile.write( "" +os.linesep)\n# \tfile.write( "Cert. N\xc2\xba"+num +os.linesep)\n# \tfile.write( "" +os.linesep)\n# \tfile.write( "Se expide conforme Ley N\xc2\xba4663, Art.8 Inc.\'C\' " +os.linesep)\n# \tfile.write( "" +os.linesep)\n# \tfile.write( "" +os.linesep)\n# \tfile.write( "" +os.linesep)\n# \tfile.write( "" +os.linesep)\n# \tfile.write( "-----------------------------------------------"+"                          "+"\t------------------------------------------------" +os.linesep)\n# \tfile.write( "       Jefe Div. Ant. Personales"+"                          \t"+"Jefe Depto.Inv. Judiciales (D-5)" +os.linesep)\t\n# \tfile.close()\n# \t#redirect(URL(c=\'imprimir\',f=\'con_antecedentes\',args=[ide_soli,ide_padron,dni]))\n# \treturn dict(ante=ante)\n\n# def con_antecedentes():\n# \tide_padron=request.args[1]\t#traigo el argumento del id del padron\n# \tide_soli=request.args[0] \t#traigo el argumento del id de la solicitud\n# \tdni=request.args[2] \n# \tfrom reportlab.pdfgen import canvas# clase para crear el documento\n# \tfrom reportlab.lib.colors import white,red,green,blue,gray,black#colores\t\n# \tfrom os import startfile\n# \tfrom reportlab.lib.utils import ImageReader\n# \timport StringIO\n# \timport PIL.Image\n# \tfrom reportlab.lib.styles import getSampleStyleSheet\n# \tfrom reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY\n# \tfrom reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image\n# \timport os\n# \tfrom io import open\n# \timport reportlab.rl_config\n# \treportlab.rl_config.warnOnMissingFontGlyphs = 0\n# \tfrom reportlab.pdfbase import pdfmetrics\n# \tfrom reportlab.pdfbase.ttfonts import TTFont\n# \tfrom textwrap import wrap\n# \tpdfmetrics.registerFont(TTFont(\'Vera\', \'Vera.ttf\'))\n# \tpdfmetrics.registerFont(TTFont(\'VeraBd\', \'VeraBd.ttf\'))\n# \tpdfmetrics.registerFont(TTFont(\'VeraIt\', \'VeraIt.ttf\'))\n# \tpdfmetrics.registerFont(TTFont(\'VeraBI\', \'VeraBI.ttf\'))\t\n# \tpdf="con_antecedentes.pdf"#largo,alto#defino como se va a llamar el arhivo pfg\n# \toficio=(612,1010) #configuro los tama\xc3\xb1os de la hoja oficio \n# \t#A4=612.0, 792.0 \n# \tdoc = canvas.Canvas(pdf,pagesize=oficio)\n# \tmargen=db(db.margenes).select().first()\n# \tx = margen.x\n# \tlargo=612.0\t\n# \ty =margen.y\n# \talto=1010  \n# \testilos = getSampleStyleSheet()\n# \tstyle = estilos[\'BodyText\']\t\n# \tencabezado=[]\n# \theader1=doc.drawImage("d:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\static\\\\images\\\\escudo1.jpg",80,950,50,50)#insertar imagen\n# \tdoc.setFont("Helvetica-Bold", 18)#fuente de letra y tama\xc3\xb1o\n# \tencabezado.append(header1)\n# \theader2=doc.drawString(150+x,970+y,"CERTIFICADO DE ANTECEDENTES")#para poner texto valores x,y\n# \tencabezado.append(header2)\n# \theader3=doc.drawImage("d:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\static\\\\images\\\\escudo_policia.jpg",480,950,50,50)#insertar imagen\n# \tencabezado.append(header3)\n# \tdoc.setFont("Courier-BoldOblique", 11)#fuente de letra y tama\xc3\xb1o\n# \tdoc.drawString(210+x,950+y,"VALIDO POR SEIS MESES")#para poner texto valores x,y\t\n# \t#doc.drawText(text)\t\n# \tfrom reportlab.platypus import *\n# \tstory=[]\t\n# \ttextoArchivo = open("txt.txt", "r")  # Abrimos un archivo de texto\n# \ttext=""\n# \ttextobject = doc.beginText(40,890)  # Iniciamos el textobject\n# \ttextobject.setTextOrigin(40, 890)  # Ubicamos el cursor donde dibujar\n# \ttextobject.setFont("VeraIt", 8)\n# \tfor i in textoArchivo:\n# \t\t#i = i.replace("\\n","")  # Remplazamos el salto de linea\n# \t\t#textobject.textLine( i)  # Dibujamos la linea\n# \t\tp = Paragraph(i, style)\n#  \t\tstory.append(p)\n#  \t\tstory.append(Spacer(1,0.2))\n\t  \n# \t#textobject.setCharSpace(0.1)  # Espacio entre caracteres \n# \t#textobject.setWordSpace(0.2)  # Espacio entre palabras\t   \n# \t#wraped_text = "\\n".join(wrap(text, 80)) # 80 is line width\n# \tdoc.drawText(textobject)  # Dibujamos el texto pasando un objeto de texto\n# \tdoc.build(story)\n# \t#doc.showPage()\n# \tdoc.save()\t\n# \t#startfile(pdf)   \n# \treturn dict()\n\n\n\n\n\n\n\n\t\n\n\n\n\t\n\n\n\n\n\t\n\n\t\n \n \n\n\t\n\n    \n\t\n\n\n\n\t\n\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\n\nresponse._vars=response._caller(dame_un_pdf)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p23
+sS'__reduce__'
+p24
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p25
+sS'__str__'
+p26
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p27
+sS'__format__'
+p28
+S'<built-in method __format__ of exceptions.NameError object>'
+p29
+sS'__getattribute__'
+p30
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p31
+sS'__class__'
+p32
+S"<type 'exceptions.NameError'>"
+p33
+sS'__unicode__'
+p34
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p35
+sS'__delattr__'
+p36
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p37
+sS'__subclasshook__'
+p38
+S'<built-in method __subclasshook__ of type object>'
+p39
+sS'__repr__'
+p40
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p41
+sS'args'
+p42
+S'("name \'dni_padron\' is not defined",)'
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p47
+sS'__doc__'
+p48
+S"'Name not found globally.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"name 'dni_padron' is not defined"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's~X\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>150519</div></td></tr><tr><td><div>29917029</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>imprimir</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-91d8fb7f-2f36-4cb4-9662-d4c791f8766b<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_antecedentesplataforma</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-7095e8b2-40db-47ee-a4d4-f5304a4f59d5<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>es-ES,es;q=0.9,en;q=0.8,gl;q=0.7</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CACHE_CONTROL</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_antecedentesplataforma=127.0.0.1-7095e8b2-40db-47ee-a4d4-f5304a4f59d5; session_id_admin=127.0.0.1-91d8fb7f-2f36-4cb4-9662-d4c791f8766b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/dame_un_pdf/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>6857</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>HaTaK3-PC</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;D:\\\\web2py\\\\applications\\\\antecedentes\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\admin\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\welcome\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x279dd50: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;HaTaK3-PC&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;D:\\\\web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>es-ES,es;q=0.9,en;q=0.8,gl;q=0.7</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cache_control</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_antecedentesplataforma=127.0.0.1-7095e8b2-40db-47ee-a4d4-f5304a4f59d5; session_id_admin=127.0.0.1-91d8fb7f-2f36-4cb4-9662-d4c791f8766b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>HaTaK3-PC</div></td></tr><tr><td><div>10.10.0.9</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>fe80::65c7:8cfe:1866:2ddb%12</div></td></tr><tr><td><div>fe80::6de3:fa60:8d1c:59aa%11</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>192.168.56.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/dame_un_pdf/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>6857</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/dame_un_pdf/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>HaTaK3-PC</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x011BD0D0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x0289E4C8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x03F5DD70&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x011BD0D0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x0289E4C8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x03F5DD70&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py\\applications\\antecedentesplataforma\\</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>dame_un_pdf</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;D:\\\\web2py\\\\applications\\\\antecedentes\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\admin\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\welcome\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x279dd50: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;HaTaK3-PC&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;D:\\\\web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>HaTaK3-PC</div></td></tr><tr><td><div>10.10.0.9</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>fe80::65c7:8cfe:1866:2ddb%12</div></td></tr><tr><td><div>fe80::6de3:fa60:8d1c:59aa%11</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>192.168.56.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2019, 6, 25, 10, 50, 40, 139000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div>1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/dame_un_pdf/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2019, 6, 25, 13, 50, 40, 139000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x03E01230&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'D:\\web2py\\gluon\\restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 03EAE578, file "D:\\web2...entesplataforma\\controllers/imprimir.py", line 2>'
+p69
+ssS'lnum'
+p70
+I227
+sS'lines'
+p71
+(dp72
+I224
+S'            ccode = code'
+p73
+sI225
+S'        else:'
+p74
+sI226
+S'            ccode = compile2(code, layer)'
+p75
+sI227
+S'        exec ccode in environment'
+p76
+sI228
+S'    except HTTP:'
+p77
+sI229
+S'        raise'
+p78
+sI230
+S'    except RestrictedError:'
+p79
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p80
+sI222
+S'    try:'
+p81
+sI223
+S'        if isinstance(code, types.CodeType):'
+p82
+ssS'call'
+p83
+S"(code='\\nfrom reportlab.pdfgen import canvas\\n# def encab...\\n\\t\\n\\nresponse._vars=response._caller(dame_un_pdf)\\n', environment={'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}, layer=r'D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py')"
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'D:\\web2py\\applications\\antecedentesplataforma\\controllers\\imprimir.py'
+p88
+sg64
+(dp89
+sg70
+I480
+sg71
+(dp90
+I469
+S''
+sI470
+S''
+sI471
+S''
+sI472
+S''
+sI473
+S''
+sI474
+S''
+sI475
+S''
+sI476
+S''
+sI477
+S''
+sI478
+S''
+ssg83
+S'()'
+p91
+sg85
+S'<module>'
+p92
+sa(dp93
+g62
+S'D:\\web2py\\gluon\\globals.py'
+p94
+sg64
+(dp95
+S'self'
+p96
+S'undefined'
+p97
+sS'f'
+S'<function dame_un_pdf>'
+p98
+ssg70
+I417
+sg71
+(dp99
+I416
+S'        self._vars = None'
+p100
+sI417
+S'        self._caller = lambda f: f()'
+p101
+sI418
+S'        self._view_environment = None'
+p102
+sI419
+S'        self._custom_commit = None'
+p103
+sI420
+S'        self._custom_rollback = None'
+p104
+sI421
+S"        self.generic_patterns = ['*']"
+p105
+sI412
+S"        self.flash = ''            # used by the default view layout"
+p106
+sI413
+S'        self.meta = Storage()      # used by web2py_ajax.html'
+p107
+sI414
+S'        self.menu = []             # used by the default view layout'
+p108
+sI415
+S'        self.files = []            # used by web2py_ajax.html'
+p109
+ssg83
+S'(f=<function dame_un_pdf>)'
+p110
+sg85
+S'<lambda>'
+p111
+sa(dp112
+g62
+S'D:\\web2py\\applications\\antecedentesplataforma\\controllers\\imprimir.py'
+p113
+sg64
+(dp114
+S'data'
+p115
+S"'%PDF-1.4\\n%\\x93\\x8c\\x8b\\x9e ReportLab Generated PDF document ...R\\n/Root 12 0 R\\n/Size 22\\n>>\\nstartxref\\n70821\\n%%EOF\\n'"
+p116
+ssg70
+I270
+sg71
+(dp117
+I265
+S''
+sI266
+S'    \tdoc.build(story)'
+p118
+sI267
+S'    \tdata = open(archivotmp,"rb").read()'
+p119
+sI268
+S'    \tos.unlink(archivotmp)'
+p120
+sI269
+S"    \tresponse.headers['Content-Type']='application/pdf'"
+p121
+sI270
+S"    \tredirect(URL(c='confeccion',f='pre_imprimir',args=[ide_soli,ide_padron,dni_padron]))"
+p122
+sI271
+S''
+sI272
+S'\treturn data'
+p123
+sI273
+S''
+sI274
+S''
+ssg83
+S'()'
+p124
+sg85
+S'dame_un_pdf'
+p125
+sasS'pyver'
+p126
+S'Python 2.7.9: D:\\web2py\\web2py.exe (prefix: )'
+p127
+sS'session'
+p128
+g57
+(S's\x18\x0c\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">auth</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">expiration</td><td style="vertical-align:top;">:</td><td><div>3600</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">hmac_key</td><td style="vertical-align:top;">:</td><td><div>c48da293-14cd-4621-8ccd-c13ab87ec027</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_visit</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2019, 6, 25, 10, 49, 40, 307000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remember_me</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">user</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">dni</td><td style="vertical-align:top;">:</td><td><div>29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">email</td><td style="vertical-align:top;">:</td><td><div>juan@ulivar.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">first_name</td><td style="vertical-align:top;">:</td><td><div>juan</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">id</td><td style="vertical-align:top;">:</td><td><div>1L</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">iniciales</td><td style="vertical-align:top;">:</td><td><div>J.U.</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_name</td><td style="vertical-align:top;">:</td><td><div>ulivar</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">oficina</td><td style="vertical-align:top;">:</td><td><div>Super</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">registration_id</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">registration_key</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">reset_password_key</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">username</td><td style="vertical-align:top;">:</td><td><div>uli</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">user_groups</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">1</td><td style="vertical-align:top;">:</td><td><div>Super</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_orderby</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_query</td><td style="vertical-align:top;">:</td><td><div>db.solicitud.id&gt;0</div></td></tr></table></div>'
+tRp129
+sS'etype'
+p130
+S"<type 'exceptions.NameError'>"
+p131
+sS'date'
+p132
+S'Tue Jun 25 10:50:40 2019'
+p133
+sS'response'
+p134
+g57
+(S'shA\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x03DDD760&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_antecedentesplataforma</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-7095e8b2-40db-47ee-a4d4-f5304a4f59d5<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>bootstrap3_inline</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>*</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">Content-Type</td><td style="vertical-align:top;">:</td><td><div>application/pdf</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="navbar-brand" href="http://www.web2py.com/" id="web2py-logo"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Inicio</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/antecedentesplataforma/default/index</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mis Sitios</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Esta Aplicaci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Design</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/design/antecedentesplataforma</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Controlador</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/controllers/imprimir.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Vista</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/views/imprimir/dame_un_pdf.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Modelo BDD</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Modelo "menu"</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Config.ini</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/private/appconfig.ini</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Dise\xc3\xb1o de p\xc3\xa1gina</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Hoja de estilo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/static/css/web2py-bootstrap3.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Base de datos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/antecedentesplataforma/appadmin/index</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Errores</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/errors/antecedentesplataforma</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Acerca de</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/about/antecedentesplataforma</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Descargas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/download</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Soporte</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/support</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Demostraci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/demo_admin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Ejemplos R\xc3\xa1pidos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/examples/default/examples</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>FAQ</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/AlterEgo</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>V\xc3\xaddeos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/videos/</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Aplicaciones Libres</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/appliances</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Plugins</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/plugins</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recetas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2pyslices.com/</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Documentaci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Online book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Prefacio</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/00</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Introducci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/01</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Python</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/02</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Resumen</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/03</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>El N\xc3\xbacleo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/04</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Las Vistas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/05</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Base de datos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/06</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Formularios y validadores</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/07</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Correo electr\xc3\xb3nico y SMS</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/08</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Control de Acceso</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/09</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Servicios</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/10</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recetas AJAX</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/11</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Componentes y Plugins</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/12</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recetas de despliegue</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/13</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Otras Recetas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/14</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Helping web2py</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/15</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Buy web2py\'s book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://stores.lulu.com/web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Comunidad</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Grupos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/usergroups</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Twitter</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://twitter.com/web2py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Chat en vivo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://webchat.freenode.net/?channels=web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">description</td><td style="vertical-align:top;">:</td><td><div>a cool new app</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>web2py</div></td></tr><tr><td><div>python</div></td></tr><tr><td><div>framework</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^imprimir/\\w+\\.py$</div></td></tr><tr><td><div>^imprimir/dame_un_pdf/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\sessions\\\\075\\\\0bd\\\\127.0.0.1-7095e8b2-40db-47ee-a4d4-f5304a4f59d5&#x27;, mode &#x27;rb+&#x27; at 0x077550D0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py\\applications\\antecedentesplataforma\\sessions\\127.0.0.1-7095e8b2-40db-47ee-a4d4-f5304a4f59d5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>671d143d2a4b4f5be6f9a7414b552081</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-7095e8b2-40db-47ee-a4d4-f5304a4f59d5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_locked</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>imprimir/dame_un_pdf.html</div></td></tr></table></div>'
+tRp135
+sS'locals'
+p136
+(dp137
+S'PythonPreformatted'
+p138
+S'<class reportlab.platypus.xpreformatted.PythonPreformatted>'
+p139
+sS'IndexingFlowable'
+p140
+S'<class reportlab.platypus.doctemplate.IndexingFlowable>'
+p141
+sS'LCActionFlowable'
+p142
+S'<class reportlab.platypus.doctemplate.LCActionFlowable>'
+p143
+sS'datetime'
+p144
+S"<type 'datetime.datetime'>"
+p145
+sS'colors'
+p146
+S"<module 'reportlab.lib.colors' from 'reportlab\\lib\\colors.py'>"
+p147
+sS'clave'
+p148
+S"{'0': None, '1': 'A.G.', '2': 'C.I.', '3': 'D.C.P.', '4': 'D.E.', '5': 'R.C.', '6': 'S.P.'}"
+p149
+sS'BaseDocTemplate'
+p150
+S'<class reportlab.platypus.doctemplate.BaseDocTemplate>'
+p151
+sS'DocWhile'
+p152
+S'<class reportlab.platypus.flowables.DocWhile>'
+p153
+sS'SimpleDocTemplate'
+p154
+S'<class reportlab.platypus.doctemplate.SimpleDocTemplate>'
+p155
+sS'tables'
+p156
+S"<module 'reportlab.platypus.tables' from 'reportlab\\platypus\\tables.py'>"
+p157
+sS'CellStyle'
+p158
+S'<class reportlab.platypus.tables.CellStyle>'
+p159
+sS'CondPageBreak'
+p160
+S'<class reportlab.platypus.flowables.CondPageBreak>'
+p161
+sS'ParaFrag'
+p162
+S'<class reportlab.platypus.paraparser.ParaFrag>'
+p163
+sS'ActionFlowable'
+p164
+S'<class reportlab.platypus.doctemplate.ActionFlowable>'
+p165
+sS'Flowable'
+p166
+S'<class reportlab.platypus.flowables.Flowable>'
+p167
+sS'tzinfo'
+p168
+S"<type 'datetime.tzinfo'>"
+p169
+sS'BulletDrawer'
+p170
+S'<class reportlab.platypus.flowables.BulletDrawer>'
+p171
+sS'CallerMacro'
+p172
+S'<class reportlab.platypus.flowables.CallerMacro>'
+p173
+sS'PageAccumulator'
+p174
+S'<class reportlab.platypus.doctemplate.PageAccumulator>'
+p175
+sS'styles'
+p176
+S'<reportlab.lib.styles.StyleSheet1 instance>'
+p177
+sS'nom'
+p178
+S"'JUAN ANTONIO'"
+p179
+sS'PageBreakIfNotEmpty'
+p180
+S'<class reportlab.platypus.flowables.PageBreakIfNotEmpty>'
+p181
+sS'ParagraphAndImage'
+p182
+S'<class reportlab.platypus.flowables.ParagraphAndImage>'
+p183
+sS'PTOContainer'
+p184
+S'<class reportlab.platypus.flowables.PTOContainer>'
+p185
+sS'LIIndenter'
+p186
+S'<class reportlab.platypus.flowables.LIIndenter>'
+p187
+sS'Paragraph'
+p188
+S'<class reportlab.platypus.paragraph.Paragraph>'
+p189
+sS'KeepTogether'
+p190
+S'<class reportlab.platypus.flowables.KeepTogether>'
+p191
+sS'DocPara'
+p192
+S'<class reportlab.platypus.flowables.DocPara>'
+p193
+sS'CurrentFrameFlowable'
+p194
+S'<class reportlab.platypus.doctemplate.CurrentFrameFlowable>'
+p195
+sS'dia'
+p196
+S"'25'"
+p197
+sS'nacion'
+p198
+S'1L'
+p199
+sS'datetime_CAPI'
+p200
+S'<capsule object "datetime.datetime_CAPI">'
+p201
+sS'ListFlowable'
+p202
+S'<class reportlab.platypus.flowables.ListFlowable>'
+p203
+sS'ListItem'
+p204
+S'<class reportlab.platypus.flowables.ListItem>'
+p205
+sS'meses'
+p206
+S"{'1': 'ENERO', '10': 'OCTUBRE', '11': 'NOVIEMBRE', '12': 'DICIEMBRE', '2': 'FEBRERO', '3': 'MARZO', '4': 'ABRIL', '5': 'MAYO', '6': 'JUNIO', '7': 'JULIO', ...}"
+p207
+sS'getSampleStyleSheet'
+p208
+S'<function getSampleStyleSheet>'
+p209
+sS'NullDraw'
+p210
+S'<class reportlab.platypus.flowables.NullDraw>'
+p211
+sS'pasa'
+p212
+S"''"
+p213
+sS'qtipo'
+p214
+S"'A.G.'"
+p215
+sS'TopPadder'
+p216
+S'<class reportlab.platypus.flowables.TopPadder>'
+p217
+sS'direc'
+p218
+S"'B\\xc2\\xb0 LA VI\\xc3\\x91ITA C/LOS REGIONALES N\\xc2\\xb0 2311-CAP.-CTCA.'"
+p219
+sg59
+S"<module 'reportlab.platypus.frames' from 'reportlab\\platypus\\frames.py'>"
+p220
+sS'uuid4'
+p221
+S'<function uuid4>'
+p222
+sS'num'
+p223
+S"'73/19'"
+p224
+sS'FrameActionFlowable'
+p225
+S'<class reportlab.platypus.doctemplate.FrameActionFlowable>'
+p226
+sS'ShowBoundaryValue'
+p227
+S'<class reportlab.platypus.frames.ShowBoundaryValue>'
+p228
+sS'DDIndenter'
+p229
+S'<class reportlab.platypus.flowables.DDIndenter>'
+p230
+sS'flowables'
+p231
+S"<module 'reportlab.platypus.flowables' from 'reportlab\\platypus\\flowables.py'>"
+p232
+sS'hoyfecha'
+p233
+S'datetime.datetime(2019, 6, 25, 10, 50, 40, 234000)'
+p234
+sS'NotAtTopPageBreak'
+p235
+S'<class reportlab.platypus.doctemplate.NotAtTopPageBreak>'
+p236
+sS'imagen_firma'
+p237
+S'<reportlab.platypus.flowables.Image instance>'
+p238
+sS'tipo'
+p239
+S"'1'"
+p240
+sS'Spacer'
+p241
+S'<class reportlab.platypus.flowables.Spacer>'
+p242
+sS'XBox'
+p243
+S'<class reportlab.platypus.flowables.XBox>'
+p244
+sS'capital'
+p245
+S"'CAPITAL'"
+p246
+sS'prof'
+p247
+S"'DOCENTE'"
+p248
+sS'AnchorFlowable'
+p249
+S'<class reportlab.platypus.flowables.AnchorFlowable>'
+p250
+sS'oficio'
+p251
+S'(612, 1010)'
+p252
+sS'TraceInfo'
+p253
+S'<class reportlab.platypus.flowables.TraceInfo>'
+p254
+sS'UseUpSpace'
+p255
+S'<class reportlab.platypus.flowables.UseUpSpace>'
+p256
+sS'LayoutError'
+p257
+S"<class 'reportlab.platypus.doctemplate.LayoutError'>"
+p258
+sS'ParaParser'
+p259
+S'<class reportlab.platypus.paraparser.ParaParser>'
+p260
+sS'mes'
+p261
+S"'6'"
+p262
+sS'FailOnDraw'
+p263
+S'<class reportlab.platypus.flowables.FailOnDraw>'
+p264
+sS'DocIf'
+p265
+S'<class reportlab.platypus.flowables.DocIf>'
+p266
+sS'paraparser'
+p267
+S"<module 'reportlab.platypus.paraparser' from 'reportlab\\platypus\\paraparser.py'>"
+p268
+sS'TableStyle'
+p269
+S'<class reportlab.platypus.tables.TableStyle>'
+p270
+sS'Image'
+p271
+S'<class reportlab.platypus.flowables.Image>'
+p272
+sS'FrameBG'
+p273
+S'<class reportlab.platypus.flowables.FrameBG>'
+p274
+sS'splitLines'
+p275
+S'<function splitLines>'
+p276
+sS'NextFrameFlowable'
+p277
+S'<class reportlab.platypus.doctemplate.NextFrameFlowable>'
+p278
+sS'pdf'
+p279
+S"'con_antecedentes.pdf'"
+p280
+sS'FrameBreak'
+p281
+S'<reportlab.platypus.doctemplate._FrameBreak instance>'
+p282
+sS'os'
+p283
+S"<module 'os' from 'D:\\web2py\\library.zip\\os.pyc'>"
+p284
+sS'fecha'
+p285
+S'datetime.datetime(2019, 6, 25, 8, 36, 51)'
+p286
+sS'LongTable'
+p287
+S'<class reportlab.platypus.tables.LongTable>'
+p288
+sS'DocAssign'
+p289
+S'<class reportlab.platypus.flowables.DocAssign>'
+p290
+sS'civil'
+p291
+S"'S'"
+p292
+sS'sol'
+p293
+S"<Row {'hora': datetime.datetime(2019, 6, 25, 8, ...: 'JUAN ANTONIO', 'intervino': 'J.U.', 'id': 1L}>"
+p294
+sS'vil'
+p295
+S"{'C': 'CASADO/A', 'D': 'DIVORSIADO/A', 'S': 'SOLTERO/A', 'V': 'VIUDO/A'}"
+p296
+sS'SetTopFlowables'
+p297
+S'<class reportlab.platypus.flowables.SetTopFlowables>'
+p298
+sS'Preformatted'
+p299
+S'<class reportlab.platypus.flowables.Preformatted>'
+p300
+sS'FailOnWrap'
+p301
+S'<class reportlab.platypus.flowables.FailOnWrap>'
+p302
+sS'archivotmp'
+p303
+S"r'D:\\web2py\\applications\\antecedentesplataforma\\private\\dfa4504a-820d-4c8a-a1d3-7ace5ae6c9a8'"
+p304
+sS'xpreformatted'
+p305
+S"<module 'reportlab.platypus.xpreformatted' from 'reportlab\\platypus\\xpreformatted.py'>"
+p306
+sS'PageTemplate'
+p307
+S'<class reportlab.platypus.doctemplate.PageTemplate>'
+p308
+sS'tabla'
+p309
+S"Table(\n rowHeights=[18, 18, 18, 18],\n colWidths=..., ['J.U.', ''], ['', ''], ['', '']]\n) # end table"
+p310
+sS'ape'
+p311
+S"'ULIVAR,'"
+p312
+sS'tiene'
+p313
+S"'SI'"
+p314
+sS'story'
+p315
+S'[]'
+p316
+sS'DocAssert'
+p317
+S'<class reportlab.platypus.flowables.DocAssert>'
+p318
+sS'BalancedColumns'
+p319
+S'<class reportlab.platypus.flowables.BalancedColumns>'
+p320
+sS'dni'
+p321
+S"'29917029'"
+p322
+sS'npront'
+p323
+S"'164440'"
+p324
+sS'pa'
+p325
+S"<Row {'Pasaporte': '', 'DocumentoNro': 29917029L...e': 'JUAN ANTONIO', 'IdPais': 1L, 'id': 150519L}>"
+p326
+sS'solipor'
+p327
+S"'ANTE LAS AUTORIDADES QUE LO REQUIERAN'"
+p328
+sS'PageBegin'
+p329
+S'<reportlab.platypus.doctemplate.LCActionFlowable instance>'
+p330
+sS'ImageAndFlowables'
+p331
+S'<class reportlab.platypus.flowables.ImageAndFlowables>'
+p332
+sS'ante'
+p333
+S"'LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCI...LESUADA FAMES. SED VELIT DIGNISSIM SODALES UT EU.'"
+p334
+sS'ParagraphStyle'
+p335
+S'<class reportlab.lib.styles.ParagraphStyle>'
+p336
+sS'paises'
+p337
+S"<Row {'pais': 'ARGENTINA', 'id': 1L, 'padron': <Set (padron.IdPais = 1)>}>"
+p338
+sS'TA_RIGHT'
+p339
+S'2'
+sS'XPreformatted'
+p340
+S'<class reportlab.platypus.xpreformatted.XPreformatted>'
+p341
+sS'SetPageTopFlowables'
+p342
+S'<class reportlab.platypus.flowables.SetPageTopFlowables>'
+p343
+sS'cleanBlockQuotedText'
+p344
+S'<function cleanBlockQuotedText>'
+p345
+sS'mm'
+p346
+S'2.834645669291339'
+p347
+sS'Frame'
+p348
+S'<class reportlab.platypus.frames.Frame>'
+p349
+sS'doctemplate'
+p350
+S"<module 'reportlab.platypus.doctemplate' from 'reportlab\\platypus\\doctemplate.py'>"
+p351
+sS'TA_CENTER'
+p352
+S'1'
+sS'paragraph'
+p353
+S"<module 'reportlab.platypus.paragraph' from 'reportlab\\platypus\\paragraph.py'>"
+p354
+sS'datos'
+p355
+S"(('INTERVINO', ''), ('J.U.', ''), ('', ''), ('', ''))"
+p356
+sS'DocExec'
+p357
+S'<class reportlab.platypus.flowables.DocExec>'
+p358
+sS'doc'
+p359
+S'<reportlab.platypus.doctemplate.SimpleDocTemplate instance>'
+p360
+sS'defaultPageSize'
+p361
+S'(595.2755905511812, 841.8897637795277)'
+p362
+sS'qmes'
+p363
+S"'JUNIO'"
+p364
+sS'ide_padron'
+p365
+S"'150519'"
+p366
+sS'espacio'
+p367
+S"''"
+p368
+sS'escape'
+p369
+S'<function escape>'
+p370
+sS'NextPageTemplate'
+p371
+S'<class reportlab.platypus.doctemplate.NextPageTemplate>'
+p372
+sS'MINYEAR'
+p373
+S'1'
+sS'ide_soli'
+p374
+S"'1'"
+p375
+sS'multicol'
+p376
+S"<module 'reportlab.platypus.multicol' from 'reportlab\\platypus\\multicol.py'>"
+p377
+sS'splitLine'
+p378
+S'<function splitLine>'
+p379
+sS'FragLine'
+p380
+S'<class reportlab.platypus.paragraph.FragLine>'
+p381
+sS'TA_LEFT'
+p382
+S'0'
+sS'anio'
+p383
+S"'2019'"
+p384
+sS'inch'
+p385
+S'72.0'
+p386
+sS'timedelta'
+p387
+S"<type 'datetime.timedelta'>"
+p388
+sS'NullActionFlowable'
+p389
+S'<class reportlab.platypus.doctemplate.NullActionFlowable>'
+p390
+sS'Macro'
+p391
+S'<class reportlab.platypus.flowables.Macro>'
+p392
+sS'clase'
+p393
+S"'1982'"
+p394
+sS'PageBreak'
+p395
+S'<class reportlab.platypus.flowables.PageBreak>'
+p396
+sS'user'
+p397
+S"'juan ulivar'"
+p398
+sS'ParaLines'
+p399
+S'<class reportlab.platypus.paragraph.ParaLines>'
+p400
+sg132
+S"<type 'datetime.date'>"
+p401
+sS'pais'
+p402
+S"'ARGENTINA'"
+p403
+sS'KeepInFrame'
+p404
+S'<class reportlab.platypus.flowables.KeepInFrame>'
+p405
+sS'data'
+p406
+S"'%PDF-1.4\\n%\\x93\\x8c\\x8b\\x9e ReportLab Generated PDF document ...R\\n/Root 12 0 R\\n/Size 22\\n>>\\nstartxref\\n70821\\n%%EOF\\n'"
+p407
+sS'e_civil'
+p408
+S"'SOLTERO/A'"
+p409
+sS'MultiCol'
+p410
+S'<class reportlab.platypus.multicol.MultiCol>'
+p411
+sS'MAXYEAR'
+p412
+S'9999'
+p413
+sS'FrameSplitter'
+p414
+S'<class reportlab.platypus.flowables.FrameSplitter>'
+p415
+sS'imagen_logo'
+p416
+S'<reportlab.platypus.flowables.Image instance>'
+p417
+sS'TA_JUSTIFY'
+p418
+S'4'
+sS'HRFlowable'
+p419
+S'<class reportlab.platypus.flowables.HRFlowable>'
+p420
+sS'SlowPageBreak'
+p421
+S'<class reportlab.platypus.flowables.SlowPageBreak>'
+p422
+sS'Indenter'
+p423
+S'<class reportlab.platypus.doctemplate.Indenter>'
+p424
+sS'time'
+p425
+S"<type 'datetime.time'>"
+p426
+sS'Table'
+p427
+S'<class reportlab.platypus.tables.Table>'
+p428
+sS'intervino'
+p429
+S"'J.U.'"
+p430
+sssS'traceback'
+p431
+S'Traceback (most recent call last):\n  File "D:\\web2py\\gluon\\restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py", line 480, in <module>\n  File "D:\\web2py\\gluon\\globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py", line 270, in dame_un_pdf\n    redirect(URL(c=\'confeccion\',f=\'pre_imprimir\',args=[ide_soli,ide_padron,dni_padron]))\nNameError: name \'dni_padron\' is not defined\n'
+p432
+s.

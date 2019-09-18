@@ -1,0 +1,52 @@
+{{extend 'layout1.html'}}
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+{{block header}}
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="{{=URL(c='default',f='index')}}">Home</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="{{=URL(c='entrada',f='entrada')}}">Mesa de Entrada</a>
+  </li>
+  <li class="breadcrumb-item active">
+    <strong>Ver Estado</strong>
+  </li>
+</ol>
+{{end}}
+<div class="ibox-content">
+  <script type="text/javascript">
+$(document).ready(function(){
+  
+    $("#myModal").modal('show');
+  
+});
+</script>
+<div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                
+                <i class="fa fa-warning modal-icon"></i>
+                <h3 class="modal-title text-warning"><br></h3>
+                
+            </div>
+            <div class="modal-body">
+                
+                <div class="alert alert-warning">
+                    <h3><p><strong>Su solicitud no genero resultados</strong><strong> </h3>
+                    
+                </div>
+                   
+            </div>
+            <div class="modal-footer">  
+                   
+                 
+                <a href="{{=URL('entrada', 'form_ver_estado')}}" class=" btn btn-success btn-xs" >Aceptar</a>
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+</div>         
+

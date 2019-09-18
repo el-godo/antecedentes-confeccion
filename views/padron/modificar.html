@@ -1,0 +1,91 @@
+
+<style>
+	.swal-modal{width: 60%;
+
+	}
+  #contiene{
+    position: relative;
+    width: 50%;
+    left: 20%;
+
+
+  }
+  #no{
+    background: #7cd1f9;
+    color:white;
+  }
+  #si{
+    background:#f97c95;
+  }
+</style>
+{{extend 'layout1.html'}}
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href="{{=URL(c='default',f='index')}}">Home</a>
+	</li>
+	<li class="breadcrumb-item active">
+		<strong>Modificar datos padron</strong>
+	</li>
+</ol>
+{{end}}
+
+
+
+               
+            </div><div class="swal-overlay swal-overlay--show-modal" tabindex="-1">
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-text" style=""><h3><strong>¿Realmente quieres modificar los datos de esta persona? <br>
+  	<div class="ibox-content">
+	
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				
+				<th>Dni/Pasaporte</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Tipo</th>
+				<th>Prontuario Nº</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				
+				<td>{{=dnpa}}</td>
+				<td>{{=apellido}}</td>
+				<td>{{=nombre}}</td>
+				<td>{{=tipo}}</td>
+				<td>{{=nprontuario}}</td>
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+   </strong></h3></div><div class="swal-footer"><div class="swal-button-container">
+
+    <a href="{{=URL('confeccion', 'modificar_padron')}}" class="swal-button swal-button--confirm"id="no">No Gracias!!</a>
+    
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div> 
+    </div>
+
+  </div><div class="swal-button-container">
+<a href="{{=URL('padron', 'form_modificar',args=[ide])}}" class="swal-button swal-button--cancel"id="si"  >Si Quiero!!</a>
+   
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+
+
+
+
+

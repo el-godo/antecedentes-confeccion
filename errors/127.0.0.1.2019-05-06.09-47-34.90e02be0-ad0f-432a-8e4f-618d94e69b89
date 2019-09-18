@@ -1,0 +1,851 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.IOError'> [Errno 2] No such file or directory: 'D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\private\\\\466f7493-fed9-45f5-8f78-eb9296b5efee'"
+p3
+sS'layer'
+p4
+S'D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py'
+p5
+sS'code'
+p6
+S'\nfrom reportlab.pdfgen import canvas\n\ndef sin_antecedentes():\n\tide_padron=request.args[1]\t#traigo el argumento del id del padron\n\tide_soli=request.args[0] \t#traigo el argumento del id de la solicitud\n\tdni=request.args[2] \t\t#traigo el dni de la persona\n\tpa=db(db.padron.id==ide_padron).select().first()\n\tape=pa.Apellido\n\tnom=pa.Nombre\n\tclase=pa.Clase\n\tdni=pa.DocumentoNro\n\tpasa=pa.Pasaporte\n\tnacion=pa.IdPais\n\tclave={\'1\':"A.G.",\'2\':"C.I.",\'3\':"D.C.P",\'4\':"D.E",\'5\':"R.C",\'6\':"S.P.",\'0\':None}\n\tcivil=pa.EstadoCivil\n\tprof=pa.Profesion\n\tdirec=pa.Direccion\n\ttipo=pa.IdProntuarioTipo\n\tnpront=pa.ProntuarioNro\n\t\n\tsol=db(db.solicitud.id==ide_soli).select().first()\n\tcapital=sol.capitalinterior\n\tintervino=sol.intervino\n\tfecha=sol.fecha_solicitada\t\n\tuser=sol.usuario\n\ttiene=sol.t_antecedentes\n\tante=sol.antecedentes\n\tfrom reportlab.platypus import *\n\tfrom reportlab.lib.styles import getSampleStyleSheet\n\tfrom reportlab.rl_config import defaultPageSize\n\tfrom reportlab.lib.units import inch, mm\n\tfrom reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY\n\tfrom reportlab.lib import colors\n\tfrom uuid import uuid4\n\tfrom cgi import escape\n\timport os\n\t\n    \t\n\ttitulo = "Este es el t\xc3\xadtulo del documento"\n    \tencabezado = "Primer p\xc3\xa1rrafo"\n    \ttexto = nom+"  "+ape\n\n    \tstyles = getSampleStyleSheet()\n    \tarchivotmp=os.path.join(request.folder,\'private\',str(uuid4()))\n   \tdoc = SimpleDocTemplate(archivotmp)\n    \tstory = []\n    \tstory.append(Paragraph(escape(titulo),styles["Title"]))\n    \tstory.append(Paragraph(escape(encabezado),styles["Heading2"]))\n    \tstory.append(Paragraph(escape(texto),styles["Normal"]))\n    \tstory.append(Spacer(1,2*inch))\n    \t\n    \tdata = open(archivotmp,"rb").read()\n    \tos.unlink(archivotmp)\n    \tresponse.headers[\'Content-Type\']=\'application/pdf\'\n    \tdoc.build(story)\n\treturn data\n    \t\n\t\n\n\t\n\t\ndef con_antecedentes():\n\tfrom datetime import date,time,datetime\n\tfecha=datetime.now()\n\tide_padron=request.args[1]\t#traigo el argumento del id del padron\n\tide_soli=request.args[0]\t#traigo el argumento del id de la solicitud\n\tdni=request.args[2]\t\t\t#traigo el dni de la persona\n\tpa=db(db.padron.id==ide_padron).select().first()\n\tApe=pa.Apellido\n\tnom=pa.Nombre\n\tclase=pa.Clase\n\tdni=pa.DocumentoNro\n\tpasa=pa.Pasaporte\n\tnacion=pa.IdPais\n\tclave={\'1\':"A.G.",\'2\':"C.I.",\'3\':"D.C.P",\'4\':"D.E",\'5\':"R.C",\'6\':"S.P.",\'0\':None}\n\tcivil=pa.EstadoCivil\n\tprof=pa.Profesion\n\tdirec=pa.Direccion\n\ttipo=pa.IdProntuarioTipo\n\tnpront=pa.ProntuarioNro\n\n\tsol=db(db.solicitud.id==ide_soli).select().first()\n\tcapital=sol.capitalinterior\n\tintervino=sol.intervino\n\tfecha=sol.fecha_solicitada\n\tuser=sol.usuario\n\ttiene=sol.t_antecedentes\n\tante=sol.antecedentes\n\t\n\treturn dict()\n\n \n \n\n\t\n\n    \n\t\n\n\n\n\t\n\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\n\nresponse._vars=response._caller(sin_antecedentes)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of exceptions.IOError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of exceptions.IOError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of exceptions.IOError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'__sizeof__'
+p20
+S'<built-in method __sizeof__ of exceptions.IOError object>'
+p21
+sS'__init__'
+p22
+S"<method-wrapper '__init__' of exceptions.IOError object>"
+p23
+sS'__setattr__'
+p24
+S"<method-wrapper '__setattr__' of exceptions.IOError object>"
+p25
+sS'__reduce_ex__'
+p26
+S'<built-in method __reduce_ex__ of exceptions.IOError object>'
+p27
+sS'__new__'
+p28
+S'<built-in method __new__ of type object>'
+p29
+sS'errno'
+p30
+S'2'
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.IOError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.IOError'>"
+p34
+sS'filename'
+p35
+S"r'D:\\web2py\\applications\\antecedentesplataforma\\private\\466f7493-fed9-45f5-8f78-eb9296b5efee'"
+p36
+sS'__doc__'
+p37
+S"'I/O operation failed.'"
+p38
+sS'__getitem__'
+p39
+S"<method-wrapper '__getitem__' of exceptions.IOError object>"
+p40
+sS'__setstate__'
+p41
+S'<built-in method __setstate__ of exceptions.IOError object>'
+p42
+sS'__getattribute__'
+p43
+S"<method-wrapper '__getattribute__' of exceptions.IOError object>"
+p44
+sS'args'
+p45
+S"(2, 'No such file or directory')"
+p46
+sS'__subclasshook__'
+p47
+S'<built-in method __subclasshook__ of type object>'
+p48
+sS'__unicode__'
+p49
+S'<built-in method __unicode__ of exceptions.IOError object>'
+p50
+sS'strerror'
+p51
+S"'No such file or directory'"
+p52
+sS'__delattr__'
+p53
+S"<method-wrapper '__delattr__' of exceptions.IOError object>"
+p54
+sS'__repr__'
+p55
+S"<method-wrapper '__repr__' of exceptions.IOError object>"
+p56
+sS'__hash__'
+p57
+S"<method-wrapper '__hash__' of exceptions.IOError object>"
+p58
+ssS'evalue'
+p59
+S"[Errno 2] No such file or directory: 'D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\private\\\\466f7493-fed9-45f5-8f78-eb9296b5efee'"
+p60
+sS'request'
+p61
+cgluon.html
+XML_unpickle
+p62
+(S's\x1a_\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>150519</div></td></tr><tr><td><div>29917029</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>imprimir</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-3cf8ad64-e631-4c95-aae2-7ae19406c329<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_antecedentesplataforma</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-80a6208a-3a52-475f-8a65-40db279f33aa<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_welcome</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-080e44eb-dc08-4b26-bdba-bfa6a11907c8<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>es-ES,es;q=0.9,en;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CACHE_CONTROL</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=127.0.0.1-3cf8ad64-e631-4c95-aae2-7ae19406c329; session_id_antecedentesplataforma=127.0.0.1-80a6208a-3a52-475f-8a65-40db279f33aa; session_id_welcome=127.0.0.1-080e44eb-dc08-4b26-bdba-bfa6a11907c8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/antecedentesplataforma/confeccion/pre_imprimir/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/sin_antecedentes/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>5519</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>HaTaK3-PC</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;D:\\\\web2py\\\\applications\\\\admin\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\welcome\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x281cd50: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;HaTaK3-PC&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;D:\\\\web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>es-ES,es;q=0.9,en;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cache_control</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=127.0.0.1-3cf8ad64-e631-4c95-aae2-7ae19406c329; session_id_antecedentesplataforma=127.0.0.1-80a6208a-3a52-475f-8a65-40db279f33aa; session_id_welcome=127.0.0.1-080e44eb-dc08-4b26-bdba-bfa6a11907c8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/antecedentesplataforma/confeccion/pre_imprimir/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>HaTaK3-PC</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>fe80::65c7:8cfe:1866:2ddb%12</div></td></tr><tr><td><div>10.150.0.69</div></td></tr><tr><td><div>fe80::6de3:fa60:8d1c:59aa%11</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>192.168.56.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/sin_antecedentes/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>5519</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/sin_antecedentes/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>HaTaK3-PC</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x011AD0D0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x0291E4C8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x0342F930&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x011AD0D0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x0291E4C8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x0342F930&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py\\applications\\antecedentesplataforma\\</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>sin_antecedentes</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;D:\\\\web2py\\\\applications\\\\admin\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\welcome\\\\&#x27;, &#x27;D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x281cd50: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;HaTaK3-PC&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;D:\\\\web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>HaTaK3-PC</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>fe80::65c7:8cfe:1866:2ddb%12</div></td></tr><tr><td><div>10.150.0.69</div></td></tr><tr><td><div>fe80::6de3:fa60:8d1c:59aa%11</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>192.168.56.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2019, 5, 6, 9, 47, 34, 440000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div>1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/antecedentesplataforma/imprimir/sin_antecedentes/1/150519/29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2019, 5, 6, 12, 47, 34, 440000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x07A14E50&gt;</div></td></tr></table></div>'
+tRp63
+sS'frames'
+p64
+(lp65
+(dp66
+S'file'
+p67
+S'D:\\web2py\\gluon\\restricted.py'
+p68
+sS'dump'
+p69
+(dp70
+S'environment'
+p71
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p72
+sS'ccode'
+p73
+S'<code object <module> at 03C93A88, file "D:\\web2...entesplataforma\\controllers/imprimir.py", line 2>'
+p74
+ssS'lnum'
+p75
+I227
+sS'lines'
+p76
+(dp77
+I224
+S'            ccode = code'
+p78
+sI225
+S'        else:'
+p79
+sI226
+S'            ccode = compile2(code, layer)'
+p80
+sI227
+S'        exec ccode in environment'
+p81
+sI228
+S'    except HTTP:'
+p82
+sI229
+S'        raise'
+p83
+sI230
+S'    except RestrictedError:'
+p84
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p85
+sI222
+S'    try:'
+p86
+sI223
+S'        if isinstance(code, types.CodeType):'
+p87
+ssS'call'
+p88
+S"(code='\\nfrom reportlab.pdfgen import canvas\\n\\ndef sin_an...esponse._vars=response._caller(sin_antecedentes)\\n', environment={'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}, layer=r'D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py')"
+p89
+sS'func'
+p90
+S'restricted'
+p91
+sa(dp92
+g67
+S'D:\\web2py\\applications\\antecedentesplataforma\\controllers\\imprimir.py'
+p93
+sg69
+(dp94
+sg75
+I121
+sg76
+(dp95
+I110
+S''
+sI111
+S''
+sI112
+S''
+sI113
+S''
+sI114
+S''
+sI115
+S''
+sI116
+S''
+sI117
+S''
+sI118
+S''
+sI119
+S''
+ssg88
+S'()'
+p96
+sg90
+S'<module>'
+p97
+sa(dp98
+g67
+S'D:\\web2py\\gluon\\globals.py'
+p99
+sg69
+(dp100
+S'self'
+p101
+S'undefined'
+p102
+sS'f'
+S'<function sin_antecedentes>'
+p103
+ssg75
+I417
+sg76
+(dp104
+I416
+S'        self._vars = None'
+p105
+sI417
+S'        self._caller = lambda f: f()'
+p106
+sI418
+S'        self._view_environment = None'
+p107
+sI419
+S'        self._custom_commit = None'
+p108
+sI420
+S'        self._custom_rollback = None'
+p109
+sI421
+S"        self.generic_patterns = ['*']"
+p110
+sI412
+S"        self.flash = ''            # used by the default view layout"
+p111
+sI413
+S'        self.meta = Storage()      # used by web2py_ajax.html'
+p112
+sI414
+S'        self.menu = []             # used by the default view layout'
+p113
+sI415
+S'        self.files = []            # used by web2py_ajax.html'
+p114
+ssg88
+S'(f=<function sin_antecedentes>)'
+p115
+sg90
+S'<lambda>'
+p116
+sa(dp117
+g67
+S'D:\\web2py\\applications\\antecedentesplataforma\\controllers\\imprimir.py'
+p118
+sg69
+(dp119
+S'pa'
+p120
+S"<Row {'Pasaporte': '', 'DocumentoNro': 29917029L...e': 'JUAN ANTONIO', 'IdPais': 1L, 'id': 150519L}>"
+p121
+sS'clase'
+p122
+S"'1982'"
+p123
+sS'pa.Clase'
+p124
+S"'1982'"
+p125
+ssg75
+I53
+sg76
+(dp126
+I48
+S'    \tstory.append(Paragraph(escape(titulo),styles["Title"]))'
+p127
+sI49
+S'    \tstory.append(Paragraph(escape(encabezado),styles["Heading2"]))'
+p128
+sI50
+S'    \tstory.append(Paragraph(escape(texto),styles["Normal"]))'
+p129
+sI51
+S'    \tstory.append(Spacer(1,2*inch))'
+p130
+sI52
+S''
+sI53
+S'    \tdata = open(archivotmp,"rb").read()'
+p131
+sI54
+S'    \tos.unlink(archivotmp)'
+p132
+sI55
+S"    \tresponse.headers['Content-Type']='application/pdf'"
+p133
+sI56
+S'    \tdoc.build(story)'
+p134
+sI57
+S'\treturn data'
+p135
+ssg88
+S'()'
+p136
+sg90
+S'sin_antecedentes'
+p137
+sasS'pyver'
+p138
+S'Python 2.7.9: D:\\web2py\\web2py.exe (prefix: )'
+p139
+sS'session'
+p140
+g62
+(S's\x16\x0c\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">auth</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">expiration</td><td style="vertical-align:top;">:</td><td><div>3600</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">hmac_key</td><td style="vertical-align:top;">:</td><td><div>28bf398b-61c0-47b2-81d7-93e9d71a3ccc</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_visit</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2019, 5, 6, 9, 46, 52, 472000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remember_me</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">user</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">dni</td><td style="vertical-align:top;">:</td><td><div>29917029</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">email</td><td style="vertical-align:top;">:</td><td><div>juan@ulivar.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">first_name</td><td style="vertical-align:top;">:</td><td><div>juan</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">id</td><td style="vertical-align:top;">:</td><td><div>1L</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">iniciales</td><td style="vertical-align:top;">:</td><td><div>J.U.</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_name</td><td style="vertical-align:top;">:</td><td><div>ulivar</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">oficina</td><td style="vertical-align:top;">:</td><td><div>Super</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">registration_id</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">registration_key</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">reset_password_key</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">username</td><td style="vertical-align:top;">:</td><td><div>uli</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">user_groups</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">1</td><td style="vertical-align:top;">:</td><td><div>Super</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_orderby</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_query</td><td style="vertical-align:top;">:</td><td><div>db.solicitud.id&gt;0</div></td></tr></table></div>'
+tRp141
+sS'etype'
+p142
+S"<type 'exceptions.IOError'>"
+p143
+sS'date'
+p144
+S'Mon May 06 09:47:34 2019'
+p145
+sS'response'
+p146
+g62
+(S's\xe3@\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x07A14C20&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_antecedentesplataforma</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-80a6208a-3a52-475f-8a65-40db279f33aa<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>bootstrap3_inline</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>*</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="navbar-brand" href="http://www.web2py.com/" id="web2py-logo"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Inicio</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/antecedentesplataforma/default/index</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mis Sitios</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Esta Aplicaci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Design</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/design/antecedentesplataforma</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Controlador</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/controllers/imprimir.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Vista</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/views/imprimir/sin_antecedentes.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Modelo BDD</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Modelo "menu"</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Config.ini</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/private/appconfig.ini</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Dise\xc3\xb1o de p\xc3\xa1gina</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Hoja de estilo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/antecedentesplataforma/static/css/web2py-bootstrap3.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Base de datos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/antecedentesplataforma/appadmin/index</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Errores</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/errors/antecedentesplataforma</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Acerca de</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/about/antecedentesplataforma</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Descargas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/download</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Soporte</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/support</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Demostraci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/demo_admin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Ejemplos R\xc3\xa1pidos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/examples/default/examples</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>FAQ</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/AlterEgo</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>V\xc3\xaddeos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/videos/</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Aplicaciones Libres</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/appliances</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Plugins</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/plugins</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recetas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2pyslices.com/</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Documentaci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Online book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Prefacio</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/00</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Introducci\xc3\xb3n</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/01</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Python</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/02</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Resumen</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/03</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>El N\xc3\xbacleo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/04</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Las Vistas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/05</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Base de datos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/06</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Formularios y validadores</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/07</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Correo electr\xc3\xb3nico y SMS</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/08</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Control de Acceso</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/09</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Servicios</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/10</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recetas AJAX</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/11</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Componentes y Plugins</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/12</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recetas de despliegue</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/13</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Otras Recetas</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/14</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Helping web2py</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/15</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Buy web2py\'s book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://stores.lulu.com/web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Comunidad</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Grupos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/usergroups</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Twitter</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://twitter.com/web2py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Chat en vivo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://webchat.freenode.net/?channels=web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">description</td><td style="vertical-align:top;">:</td><td><div>a cool new app</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>web2py</div></td></tr><tr><td><div>python</div></td></tr><tr><td><div>framework</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^imprimir/\\w+\\.py$</div></td></tr><tr><td><div>^imprimir/sin_antecedentes/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\sessions\\\\110\\\\120\\\\127.0.0.1-80a6208a-3a52-475f-8a65-40db279f33aa&#x27;, mode &#x27;rb+&#x27; at 0x03B598B8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>D:\\web2py\\applications\\antecedentesplataforma\\sessions\\127.0.0.1-80a6208a-3a52-475f-8a65-40db279f33aa</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>dbd9687d17c43c585714c137521af1a3</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-80a6208a-3a52-475f-8a65-40db279f33aa</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_locked</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Antecedentesplataforma</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>imprimir/sin_antecedentes.html</div></td></tr></table></div>'
+tRp147
+sS'locals'
+p148
+(dp149
+S'PythonPreformatted'
+p150
+S'<class reportlab.platypus.xpreformatted.PythonPreformatted>'
+p151
+sS'IndexingFlowable'
+p152
+S'<class reportlab.platypus.doctemplate.IndexingFlowable>'
+p153
+sS'LCActionFlowable'
+p154
+S'<class reportlab.platypus.doctemplate.LCActionFlowable>'
+p155
+sS'colors'
+p156
+S"<module 'reportlab.lib.colors' from 'reportlab\\lib\\colors.py'>"
+p157
+sS'clave'
+p158
+S"{'0': None, '1': 'A.G.', '2': 'C.I.', '3': 'D.C.P', '4': 'D.E', '5': 'R.C', '6': 'S.P.'}"
+p159
+sS'BaseDocTemplate'
+p160
+S'<class reportlab.platypus.doctemplate.BaseDocTemplate>'
+p161
+sS'DocWhile'
+p162
+S'<class reportlab.platypus.flowables.DocWhile>'
+p163
+sS'SimpleDocTemplate'
+p164
+S'<class reportlab.platypus.doctemplate.SimpleDocTemplate>'
+p165
+sS'tables'
+p166
+S"<module 'reportlab.platypus.tables' from 'reportlab\\platypus\\tables.py'>"
+p167
+sS'CellStyle'
+p168
+S'<class reportlab.platypus.tables.CellStyle>'
+p169
+sS'CondPageBreak'
+p170
+S'<class reportlab.platypus.flowables.CondPageBreak>'
+p171
+sS'ParaFrag'
+p172
+S'<class reportlab.platypus.paraparser.ParaFrag>'
+p173
+sS'ActionFlowable'
+p174
+S'<class reportlab.platypus.doctemplate.ActionFlowable>'
+p175
+sS'civil'
+p176
+S"'S'"
+p177
+sS'BulletDrawer'
+p178
+S'<class reportlab.platypus.flowables.BulletDrawer>'
+p179
+sS'CallerMacro'
+p180
+S'<class reportlab.platypus.flowables.CallerMacro>'
+p181
+sS'PageAccumulator'
+p182
+S'<class reportlab.platypus.doctemplate.PageAccumulator>'
+p183
+sS'styles'
+p184
+S'<reportlab.lib.styles.StyleSheet1 instance>'
+p185
+sS'nom'
+p186
+S"'JUAN ANTONIO'"
+p187
+sS'PageBreakIfNotEmpty'
+p188
+S'<class reportlab.platypus.flowables.PageBreakIfNotEmpty>'
+p189
+sS'ParagraphAndImage'
+p190
+S'<class reportlab.platypus.flowables.ParagraphAndImage>'
+p191
+sS'PTOContainer'
+p192
+S'<class reportlab.platypus.flowables.PTOContainer>'
+p193
+sS'texto'
+p194
+S"'JUAN ANTONIO  ULIVAR'"
+p195
+sS'LIIndenter'
+p196
+S'<class reportlab.platypus.flowables.LIIndenter>'
+p197
+sS'Paragraph'
+p198
+S'<class reportlab.platypus.paragraph.Paragraph>'
+p199
+sS'KeepTogether'
+p200
+S'<class reportlab.platypus.flowables.KeepTogether>'
+p201
+sS'DocPara'
+p202
+S'<class reportlab.platypus.flowables.DocPara>'
+p203
+sS'CurrentFrameFlowable'
+p204
+S'<class reportlab.platypus.doctemplate.CurrentFrameFlowable>'
+p205
+sS'nacion'
+p206
+S'1L'
+p207
+sS'ListFlowable'
+p208
+S'<class reportlab.platypus.flowables.ListFlowable>'
+p209
+sS'ListItem'
+p210
+S'<class reportlab.platypus.flowables.ListItem>'
+p211
+sS'getSampleStyleSheet'
+p212
+S'<function getSampleStyleSheet>'
+p213
+sS'NullDraw'
+p214
+S'<class reportlab.platypus.flowables.NullDraw>'
+p215
+sS'pasa'
+p216
+S"''"
+p217
+sS'TopPadder'
+p218
+S'<class reportlab.platypus.flowables.TopPadder>'
+p219
+sS'AnchorFlowable'
+p220
+S'<class reportlab.platypus.flowables.AnchorFlowable>'
+p221
+sS'direc'
+p222
+S"'B\\xc2\\xb0 LA VI\\xc3\\x91ITA C/LOS REGIONALES N\\xc2\\xb0 2311-CAP.-CTCA.'"
+p223
+sS'xpreformatted'
+p224
+S"<module 'reportlab.platypus.xpreformatted' from 'reportlab\\platypus\\xpreformatted.py'>"
+p225
+sS'uuid4'
+p226
+S'<function uuid4>'
+p227
+sS'FrameActionFlowable'
+p228
+S'<class reportlab.platypus.doctemplate.FrameActionFlowable>'
+p229
+sS'ShowBoundaryValue'
+p230
+S'<class reportlab.platypus.frames.ShowBoundaryValue>'
+p231
+sS'DDIndenter'
+p232
+S'<class reportlab.platypus.flowables.DDIndenter>'
+p233
+sS'flowables'
+p234
+S"<module 'reportlab.platypus.flowables' from 'reportlab\\platypus\\flowables.py'>"
+p235
+sS'NotAtTopPageBreak'
+p236
+S'<class reportlab.platypus.doctemplate.NotAtTopPageBreak>'
+p237
+sS'tipo'
+p238
+S'6L'
+p239
+sS'Spacer'
+p240
+S'<class reportlab.platypus.flowables.Spacer>'
+p241
+sS'XBox'
+p242
+S'<class reportlab.platypus.flowables.XBox>'
+p243
+sS'capital'
+p244
+S"'CAPITAL'"
+p245
+sS'prof'
+p246
+S"'TEC. DE NIVEL MEDIO EN INFORMATICA'"
+p247
+sS'DocAssert'
+p248
+S'<class reportlab.platypus.flowables.DocAssert>'
+p249
+sS'TraceInfo'
+p250
+S'<class reportlab.platypus.flowables.TraceInfo>'
+p251
+sS'UseUpSpace'
+p252
+S'<class reportlab.platypus.flowables.UseUpSpace>'
+p253
+sS'LayoutError'
+p254
+S"<class 'reportlab.platypus.doctemplate.LayoutError'>"
+p255
+sS'ParaParser'
+p256
+S'<class reportlab.platypus.paraparser.ParaParser>'
+p257
+sS'FailOnDraw'
+p258
+S'<class reportlab.platypus.flowables.FailOnDraw>'
+p259
+sS'DocIf'
+p260
+S'<class reportlab.platypus.flowables.DocIf>'
+p261
+sS'paraparser'
+p262
+S"<module 'reportlab.platypus.paraparser' from 'reportlab\\platypus\\paraparser.py'>"
+p263
+sS'TableStyle'
+p264
+S'<class reportlab.platypus.tables.TableStyle>'
+p265
+sS'Image'
+p266
+S'<class reportlab.platypus.flowables.Image>'
+p267
+sS'FrameBG'
+p268
+S'<class reportlab.platypus.flowables.FrameBG>'
+p269
+sS'splitLines'
+p270
+S'<function splitLines>'
+p271
+sS'NextFrameFlowable'
+p272
+S'<class reportlab.platypus.doctemplate.NextFrameFlowable>'
+p273
+sS'FrameBreak'
+p274
+S'<reportlab.platypus.doctemplate._FrameBreak instance>'
+p275
+sS'os'
+p276
+S"<module 'os' from 'D:\\web2py\\library.zip\\os.pyc'>"
+p277
+sS'fecha'
+p278
+S'datetime.datetime(2019, 5, 6, 9, 43, 11)'
+p279
+sS'LongTable'
+p280
+S'<class reportlab.platypus.tables.LongTable>'
+p281
+sS'DocAssign'
+p282
+S'<class reportlab.platypus.flowables.DocAssign>'
+p283
+sS'Flowable'
+p284
+S'<class reportlab.platypus.flowables.Flowable>'
+p285
+sS'sol'
+p286
+S"<Row {'hora': datetime.datetime(2019, 5, 6, 9, 4...TAL', 'solicitado_por': '', 'intervino': 'J.U.'}>"
+p287
+sS'SetTopFlowables'
+p288
+S'<class reportlab.platypus.flowables.SetTopFlowables>'
+p289
+sS'Preformatted'
+p290
+S'<class reportlab.platypus.flowables.Preformatted>'
+p291
+sS'FailOnWrap'
+p292
+S'<class reportlab.platypus.flowables.FailOnWrap>'
+p293
+sg64
+S"<module 'reportlab.platypus.frames' from 'reportlab\\platypus\\frames.py'>"
+p294
+sS'npront'
+p295
+S'164440L'
+p296
+sS'ape'
+p297
+S"'ULIVAR'"
+p298
+sS'tiene'
+p299
+S"'NO'"
+p300
+sS'story'
+p301
+S"[Paragraph(\n'style': <ParagraphStyle 'Title'>\n'bu...tColor=Color(0,0,0,1), us_lines=[])]\n) #Paragraph, Paragraph(\n'style': <ParagraphStyle 'Heading2'>\n...tColor=Color(0,0,0,1), us_lines=[])]\n) #Paragraph, Paragraph(\n'style': <ParagraphStyle 'Normal'>\n'b...tColor=Color(0,0,0,1), us_lines=[])]\n) #Paragraph, Spacer(1, 144.0)]"
+p302
+sS'BalancedColumns'
+p303
+S'<class reportlab.platypus.flowables.BalancedColumns>'
+p304
+sS'dni'
+p305
+S'29917029L'
+p306
+sS'PageTemplate'
+p307
+S'<class reportlab.platypus.doctemplate.PageTemplate>'
+p308
+sS'pa'
+p309
+S"<Row {'Pasaporte': '', 'DocumentoNro': 29917029L...e': 'JUAN ANTONIO', 'IdPais': 1L, 'id': 150519L}>"
+p310
+sS'titulo'
+p311
+S"'Este es el t\\xc3\\xadtulo del documento'"
+p312
+sS'ImageAndFlowables'
+p313
+S'<class reportlab.platypus.flowables.ImageAndFlowables>'
+p314
+sS'ante'
+p315
+S"''"
+p316
+sS'TA_RIGHT'
+p317
+S'2'
+sS'XPreformatted'
+p318
+S'<class reportlab.platypus.xpreformatted.XPreformatted>'
+p319
+sS'SetPageTopFlowables'
+p320
+S'<class reportlab.platypus.flowables.SetPageTopFlowables>'
+p321
+sS'cleanBlockQuotedText'
+p322
+S'<function cleanBlockQuotedText>'
+p323
+sS'mm'
+p324
+S'2.834645669291339'
+p325
+sS'Frame'
+p326
+S'<class reportlab.platypus.frames.Frame>'
+p327
+sS'doctemplate'
+p328
+S"<module 'reportlab.platypus.doctemplate' from 'reportlab\\platypus\\doctemplate.py'>"
+p329
+sS'TA_CENTER'
+p330
+S'1'
+sS'paragraph'
+p331
+S"<module 'reportlab.platypus.paragraph' from 'reportlab\\platypus\\paragraph.py'>"
+p332
+sS'DocExec'
+p333
+S'<class reportlab.platypus.flowables.DocExec>'
+p334
+sS'defaultPageSize'
+p335
+S'(595.2755905511812, 841.8897637795277)'
+p336
+sS'ide_padron'
+p337
+S"'150519'"
+p338
+sS'escape'
+p339
+S'<function escape>'
+p340
+sS'NextPageTemplate'
+p341
+S'<class reportlab.platypus.doctemplate.NextPageTemplate>'
+p342
+sS'ide_soli'
+p343
+S"'1'"
+p344
+sS'multicol'
+p345
+S"<module 'reportlab.platypus.multicol' from 'reportlab\\platypus\\multicol.py'>"
+p346
+sS'splitLine'
+p347
+S'<function splitLine>'
+p348
+sS'FragLine'
+p349
+S'<class reportlab.platypus.paragraph.FragLine>'
+p350
+sS'TA_LEFT'
+p351
+S'0'
+sS'inch'
+p352
+S'72.0'
+p353
+sS'NullActionFlowable'
+p354
+S'<class reportlab.platypus.doctemplate.NullActionFlowable>'
+p355
+sS'Macro'
+p356
+S'<class reportlab.platypus.flowables.Macro>'
+p357
+sS'clase'
+p358
+S"'1982'"
+p359
+sS'PageBreak'
+p360
+S'<class reportlab.platypus.flowables.PageBreak>'
+p361
+sS'user'
+p362
+S"'juan ulivar'"
+p363
+sS'ParaLines'
+p364
+S'<class reportlab.platypus.paragraph.ParaLines>'
+p365
+sS'archivotmp'
+p366
+S"r'D:\\web2py\\applications\\antecedentesplataforma\\private\\466f7493-fed9-45f5-8f78-eb9296b5efee'"
+p367
+sS'KeepInFrame'
+p368
+S'<class reportlab.platypus.flowables.KeepInFrame>'
+p369
+sS'PageBegin'
+p370
+S'<reportlab.platypus.doctemplate.LCActionFlowable instance>'
+p371
+sS'MultiCol'
+p372
+S'<class reportlab.platypus.multicol.MultiCol>'
+p373
+sS'FrameSplitter'
+p374
+S'<class reportlab.platypus.flowables.FrameSplitter>'
+p375
+sS'encabezado'
+p376
+S"'Primer p\\xc3\\xa1rrafo'"
+p377
+sS'doc'
+p378
+S'<reportlab.platypus.doctemplate.SimpleDocTemplate instance>'
+p379
+sS'TA_JUSTIFY'
+p380
+S'4'
+sS'HRFlowable'
+p381
+S'<class reportlab.platypus.flowables.HRFlowable>'
+p382
+sS'SlowPageBreak'
+p383
+S'<class reportlab.platypus.flowables.SlowPageBreak>'
+p384
+sS'Indenter'
+p385
+S'<class reportlab.platypus.doctemplate.Indenter>'
+p386
+sS'Table'
+p387
+S'<class reportlab.platypus.tables.Table>'
+p388
+sS'intervino'
+p389
+S"'J.U.'"
+p390
+sssS'traceback'
+p391
+S'Traceback (most recent call last):\n  File "D:\\web2py\\gluon\\restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py", line 121, in <module>\n  File "D:\\web2py\\gluon\\globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "D:\\web2py\\applications\\antecedentesplataforma\\controllers/imprimir.py", line 53, in sin_antecedentes\n    data = open(archivotmp,"rb").read()\nIOError: [Errno 2] No such file or directory: \'D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\private\\\\466f7493-fed9-45f5-8f78-eb9296b5efee\'\n'
+p392
+s.

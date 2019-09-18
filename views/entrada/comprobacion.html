@@ -1,0 +1,71 @@
+{{extend 'layout1.html'}}
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href="{{=URL(c='default',f='index')}}">Home</a>
+	</li>
+	<li class="breadcrumb-item active">
+		<strong>solicitud</strong>
+	</li>
+</ol>
+{{end}}
+<div class="ibox-content">
+	
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				
+				<th>Dni/Pasaporte</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Tipo</th>
+				<th>Prontuario Nº</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				
+				<td>{{=dnpa}}</td>
+				<td>{{=apellido}}</td>
+				<td>{{=nombre}}</td>
+				<td>{{=tipo}}</td>
+				<td>{{=nprontuario}}</td>
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+<h2>Elija el tipo de solicitud</h2>
+<div class="row animated fadeInRightBig">
+	<div class="col-lg-2">
+
+		<div class="widget style1 navy-bg">
+			<div class="row vertical-align">
+				<div class="col-4">
+					<i class="fa fa-check-square-o fa-2x"></i>
+
+				</div>
+				<div class="col-10 text-right">
+					<h5 class="font-bold"><a href="{{=URL('entrada', 'ingreso')}}" style="color: #FFF">Turno Web</a></h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-2">
+		<div class="widget style1 red-bg">
+			<div class="row vertical-align">
+				<div class="col-4">
+					<i class="fa fa-chevron-up fa-2x"></i>
+				</div>
+				<div class="col-10 text-right">
+					<h5 class="font-bold"><a href="{{=URL('entrada', 'convencional',args=[dnpa,apellido,nombre,tipo,nprontuario,genero])}}" style="color: #FFF">Sin Turno Web</a></h5>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+	
+
+

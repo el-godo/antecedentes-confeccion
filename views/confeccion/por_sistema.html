@@ -1,0 +1,144 @@
+{{extend 'layout1.html'}}
+<script src="{{=URL('static', 'js/jquery-3.2.1.js') }}"></script>
+<script src="{{=URL('static', 'js/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  
+    $("#myModal").modal('show');
+  
+});
+
+</script>
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+  
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='panel')}}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Confección
+ Por Sistema</strong>
+      </li>
+    </ol>
+{{end}}
+<div class="ibox-content">
+  <h3 class="animated fadeInUp"></h3>
+
+
+
+<div class="ibox-content">
+  <br><br>
+  <div class="table-responsive">
+
+    <div class="well">
+      <table class="table table-striped" id="myTable">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>DNI/PASAPORTE </th>
+            <th>APELLIDO</th>
+            <th>NOMBRE</th>
+            <th>Nº Prontuario</th>
+            <th>ESTADO</th>
+            <th>FECHA</th>        
+                       
+            
+            <th></th>     
+                            
+         
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+ 
+  <hr>
+ 
+
+</div>
+
+<br>
+
+
+
+<script>
+       
+
+    $(document).ready( function () {
+
+        $.extend(true, $.fn.dataTable.defaults,{
+            "info":true,
+            "paging": true,
+            "ordering":true,
+            "searching": true,
+            "language": {
+                "url": "Spanish.json",
+                
+            },
+            lengthMenu: [
+                [10,20,50,100,500,-1], [10,20,50,100,500,'Todos']
+            ]
+
+        });
+
+        table=$('#myTable').DataTable({
+            "stateSave": false,
+            "scrollY": "40vh",
+            "paging": true,
+           /* "ajax": {
+                "url": "[=XML(mf)]",
+                "dataSrc": "" // Con esto puedo cargar el jason sin que tenga el {"data": ...}
+            },*/
+
+            "data": {{=XML(co)}}, // Aqui se puede ver que puedo cargar el jason puro en una variable y luego usar esa variable*/
+
+            
+      "columns":[
+        {name:"id", data:"id"},
+        {name:"dni", data:"dni"},
+        {name:"apellido", data:"apellido"},
+        {name:"nombre", data:"nombre"},
+        {name:"prontuario", data:"prontuario"},
+        {name:"estado_solicitud", data:"estado_solicitud"},
+        {name:"fecha_solicitada", data:"fecha_solicitada"},
+        
+        
+        
+
+       
+        {defaultContent: '<button type="button" class="detalle btn btn-info btn-xs">Procesar</button>'}
+
+      ],
+
+
+        });
+
+        $('#myTable tbody').on( 'click', 'button.editar', function(){
+                var data = table.row( $(this).parents('tr')).data();
+                var url = '{{=URL(c='confeccion', f='procesa')}}' + '/' + data.id;
+                window.location = url
+               
+                
+            });
+
+        $('#myTable tbody').on( 'click', 'button.detalle', function(){
+                var data = table.row( $(this).parents('tr')).data();
+                var url = '{{=URL(c='confeccion', f='procesar',)}}' + '/' + data.id;
+                window.location = url
+                
+            });
+
+        } );
+
+      
+
+        
+  </script>
+	
+
+</div>
+  

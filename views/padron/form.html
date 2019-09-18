@@ -1,0 +1,197 @@
+<style>
+    .btn-info{
+       background-color: #2f4050;
+    }
+    #t_antece__error{color:#f3f3f4;
+        font-size:16px;background: red;}
+    #donde__error{color:#f3f3f4;
+        font-size:16px;background: red;}
+    #clase__error{color:#f3f3f4;
+        font-size:16px;background: red;}
+    #tipo__error{color:#f3f3f4;
+        font-size:16px;background: red;}
+    #e_civil__error{color:#f3f3f4;
+        font-size:16px;background: red;}
+    #pais__error    {color:#f3f3f4;
+        font-size:16px;background: red;}
+    #nprontuario__error {color:#f3f3f4;
+        font-size:16px;background: red;}
+
+</style>
+
+{{extend 'layout1.html'}}
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confecciòn</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='index')}}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">
+        <strong> Padron</strong>
+    </li>
+</ol>
+{{end}}
+<div class="col-lg-24">
+    <div class="col-lg-12">
+        <div class="col-lg-12IdProntuarioTipo">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Formulario de Ingreso al Padron</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    {{=form.custom.begin}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><strong>Dni:</strong></label>
+                                {{form.custom.widget.dni["_style"] = "text-transform:uppercase"}}
+                                {{=form.custom.widget.dni}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><strong>Pasaporte:</strong></label>
+                                {{form.custom.widget.pasaporte["_style"] = "text-transform:uppercase"}}
+                                {{=form.custom.widget.pasaporte}}
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><strong>Apellido:</strong></label>
+                                {{form.custom.widget.apellido["_style"] = "text-transform:uppercase"}}
+                                {{=form.custom.widget.apellido}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><strong>Nombre:</strong></label>
+                                {{form.custom.widget.nombre["_style"] = "text-transform:uppercase"}}
+                                {{=form.custom.widget.nombre}}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><strong>Clase:</strong></label>
+                                {{form.custom.widget.clase["_style"] = "text-transform:uppercase"}}
+                                {{=form.custom.widget.clase}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><strong>Genero:</strong></label>
+                                {{form.custom.widget.genero["_style"] = "text-transform:uppercase"}}
+                                {{=form.custom.widget.genero}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><strong>Nacionalidad:</strong></label>
+                                {{form.custom.widget.pais["_style"] = "text-transform:uppercase"}}
+                                {{=form.custom.widget.pais}}
+
+
+                                
+                                
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><strong>Estado Civil:</strong></label>
+                            {{form.custom.widget.e_civil["_style"] = "text-transform:uppercase"}}
+                            {{=form.custom.widget.e_civil}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><strong>Profesion:</strong></label>
+                            {{form.custom.widget.profesion["_style"] = "text-transform:uppercase"}}
+                            {{=form.custom.widget.profesion}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><strong>Direccion:</strong></label>
+                            {{form.custom.widget.domicilio["_style"] = "text-transform:uppercase"}}
+                            {{=form.custom.widget.domicilio}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><strong>Tipo de Prontuario:</strong></label>
+                            {{form.custom.widget.tipo["_style"] = "text-transform:uppercase"}}
+                            {{=form.custom.widget.tipo}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><strong>Nº De Prontuario:</strong></label>
+                            {{form.custom.widget.nprontuario["_style"] = "text-transform:uppercase"}}
+                            {{=form.custom.widget.nprontuario}}
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label><strong>Observaciones:</strong></label>
+                            {{form.custom.widget.Observaciones["_style"] = "text-transform:uppercase"}}
+                            {{=form.custom.widget.Observaciones}}
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+                
+                
+                <div class="form-group">
+                    
+                    
+                    
+                    <button type="submit" class="btn btn-info ">Guardar</button>
+                    
+                    
+                    {{=form.custom.end}}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.typeahead_3').typeahead({
+    source: [
+        {"name": "Afghanistan", "code": "AF", "ccn0": "040"},
+        {"name": "Land Islands", "code": "AX", "ccn0": "050"},
+        {"name": "Albania", "code": "AL","ccn0": "060"},
+        {"name": "Algeria", "code": "DZ","ccn0": "070"}
+    ]
+}); 
+
+    </script>
+
+ 
+
+
+

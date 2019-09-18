@@ -1,0 +1,67 @@
+{{extend 'layout1.html'}}
+
+
+
+
+
+
+{{block header}}
+    <h2>Div. Antecedentes- Sistema de Confeccion</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='index')}}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Modificar Datos de Solicitante</strong>
+      </li>
+    </ol>
+{{end}}
+
+
+
+
+
+<h3 class="animated fadeIn">Busqueda</h3>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+
+<div class="row">
+  <div class="col-lg-4">
+
+
+  </div>
+  <div class="col-lg-4">
+    <div class="ibox ">
+      <div class="ibox-title">
+        <h5>Buscar Persona</h5> <span class="label label-success"><i class="fa fa-hand-o-up"></i></span>
+      </div>
+      <div class="ibox-content">
+        <br>
+        
+          {{=form.custom.begin}}
+
+            <div class="form-group">
+               <label><strong>Dni/Pasaporte</strong></label>
+                {{form.custom.widget.valor["_style"] = "text-transform:uppercase"}}
+                {{=form.custom.widget.valor}}
+            
+            
+            <button type="submit" class="btn btn-warning block full-width m-b">Buscar</button>
+
+        {{=form.custom.end}}
+
+
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-4">
+    
+  </div>
+
+</div>
+

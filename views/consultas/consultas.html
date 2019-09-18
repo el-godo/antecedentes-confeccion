@@ -1,0 +1,41 @@
+{{extend 'layout.html'}}
+<style>
+  #icono{
+
+    width: 130px;
+    font-size: 34px;
+    padding: 20px;
+
+
+  }
+  
+</style>
+<br>
+
+<div class="container">
+    <div class="row">
+        
+            <div class="panel panel-primary well">
+              <div class="panel-heading">Panel Administrativo</div>
+              <div class="panel-body">
+                    <div class="col-md-2"id="icono">
+                          <a href="{{=URL(r=request,f='../../consultas/padron.html')}}"  class="thumbnail ">
+                       
+                          <img src="{{=URL('static','images/padron.jpg')}}" width="200" height="300" alt="">
+                        </a>
+                        <h6><p class="text-center text-info">PADRON</p></h6>
+                    </div>
+                    <div class="col-md-2"id="icono">
+                        <a href="{{=URL(r=request,f='../../confeccion/consulta.html')}}" class="thumbnail">
+                          <img src="{{=URL('static','images/nuevo.jpg')}}" alt="">
+                        </a>
+                        <h6><p class="text-center text-info">Solicitud</p></h6>
+                    </div>
+                    
+                    </div>
+              </div>
+            </div>
+    </div>
+
+  
+</div>

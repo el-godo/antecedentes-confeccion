@@ -1,0 +1,219 @@
+(dp1
+S'output'
+p2
+S'Unable to open included view file: D:\\web2py\\applications\\antecedentesplataforma\\views\\layout2.html'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'{{extend \'layout1.html\'}}\r\n\r\n<style>\r\n  .swal-modal { width:80% !important;\r\n    }\r\n \r\n</style>\r\n{{extend \'layout2.html\'}}\r\n\r\n{{block header}}\r\n    \r\n{{end}}\r\n<div class="contenedor" id="contenedor">\r\n\r\n<div class="row animated fadeInRightBig" align: center>\r\n  <div class="conte"></div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n               \r\n            </div><div class="swal-overlay swal-overlay--show-modal" tabindex="-1">\r\n  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--success">\r\n    <span class="swal-icon--success__line swal-icon--success__line--long"></span>\r\n    <span class="swal-icon--success__line swal-icon--success__line--tip"></span>\r\n\r\n    <div class="swal-icon--success__ring"></div>\r\n    <div class="swal-icon--success__hide-corners"></div>\r\n  </div><div class="swal-title" >Su registro al congreso fu\xc3\xa8 Exitoso!</div><div class="swal-text" style="">  <p align="center" id="parrafo">El 1\xc2\xba Congreso de  Criminalistica a realizarse los dias 5 y 6 de septiembre a 8:30 hs En el Salon Auditorium del\'\'Hospital Inter-Zonal San Juan Bautista\'\'. <br>\r\n  Le recordamos que debera realizar su pago, en forma personal en base de la Divisi\xc3\xb3n Criminal\xc3\xadstica sito en B\xc2\xba 920 v.v. Torre \xe2\x80\x9cL\xe2\x80\x9d  2do. Piso.\r\n  El costo para todos los cursantes es de 600 pesos hasta el d\xc3\xada 20 de Agosto, y de 800       pesos hasta el d\xc3\xada del evento. Quedando asegurado el lugar solo luego del pago</p></div><div class="swal-footer"><div class="swal-button-container">\r\n<a href="{{=URL(\'criminalistica\', \'oferta_taller\')}}"  class="swal-button swal-button--confirm">OK</a>\r\n \r\n <br>\r\n <br>\r\n\r\n    <div class="swal-button__loader">\r\n      <div></div>\r\n      <div></div>\r\n      <div></div>\r\n    </div>\r\n\r\n  </div></div></div>\r\n  </div>\r\n  </div>\r\n  </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    <div class="modal-dialog">\r\n        <div class="modal-content animated bounceInRight">\r\n            <div class="modal-header">\r\n                \r\n                <i class="fa fa-warning modal-icon"></i>\r\n                <h3 class="modal-title text-warning"><br></h3>\r\n                \r\n            </div>\r\n            <div class="modal-body">\r\n                \r\n                <div class="alert alert-warning">\r\n                    <h3><p><strong>Su solicitud se genero con exito</strong><strong> </h3>\r\n                    \r\n                </div>\r\n                   \r\n            </div>\r\n            <div class="modal-footer">  \r\n                   \r\n                 \r\n                <a href="{{=URL(\'entrada\', \'ingreso\')}}" class=" btn btn-success btn-xs" >Aceptar</a>\r\n                \r\n                \r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="ibox-content">\r\n  \r\n  <table class="table table-bordered">\r\n    <thead>\r\n      <tr>\r\n        \r\n\r\n        \r\n        \r\n\r\n        \r\n        <th>Dni/Pasaporte</th>\r\n        <th>Nombre</th>\r\n        <th>Apellido</th>\r\n        <th>Tipo</th>\r\n        <th>Prontuario N\xc2\xba</th>\r\n        <th>Estado</th>\r\n        <th>Fecha</th>\r\n        <th>hora</th>\r\n        <th>Usuario</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr>\r\n        \r\n        <td>{{=dnpa}}</td>\r\n        <td>{{=apellido}}</td>\r\n        <td>{{=nombre}}</td>\r\n        <td>{{=tipo}}</td>\r\n        <td>{{=nprontuario}}</td>\r\n        <td>{{=estado}}</td>\r\n        <td>{{=hoyfecha.day}}/{{=hoyfecha.month}}/{{=hoyfecha.year}}</td>\r\n        <td>{{=hora.hour}}:{{=hora.minute}}:{{=hora.second}}</td>\r\n        <td>{{=usuario}}</td>\r\n\r\n\r\n        \r\n        </td>\r\n\r\n        \r\n\r\n\r\n      </tr>\r\n\r\n      \r\n    </tbody>\r\n    \r\n  </table>\r\n  \r\n\r\n\r\n\r\n\r\n\r\n\r\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of exceptions.IOError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of exceptions.IOError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of exceptions.IOError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'__sizeof__'
+p20
+S'<built-in method __sizeof__ of exceptions.IOError object>'
+p21
+sS'__init__'
+p22
+S"<method-wrapper '__init__' of exceptions.IOError object>"
+p23
+sS'__setattr__'
+p24
+S"<method-wrapper '__setattr__' of exceptions.IOError object>"
+p25
+sS'__reduce_ex__'
+p26
+S'<built-in method __reduce_ex__ of exceptions.IOError object>'
+p27
+sS'__new__'
+p28
+S'<built-in method __new__ of type object>'
+p29
+sS'errno'
+p30
+S'2'
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.IOError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.IOError'>"
+p34
+sS'filename'
+p35
+S"r'D:\\web2py\\applications\\antecedentesplataforma\\views\\layout2.html'"
+p36
+sS'__doc__'
+p37
+S"'I/O operation failed.'"
+p38
+sS'__getitem__'
+p39
+S"<method-wrapper '__getitem__' of exceptions.IOError object>"
+p40
+sS'__setstate__'
+p41
+S'<built-in method __setstate__ of exceptions.IOError object>'
+p42
+sS'__getattribute__'
+p43
+S"<method-wrapper '__getattribute__' of exceptions.IOError object>"
+p44
+sS'args'
+p45
+S"(2, 'No such file or directory')"
+p46
+sS'__subclasshook__'
+p47
+S'<built-in method __subclasshook__ of type object>'
+p48
+sS'__unicode__'
+p49
+S'<built-in method __unicode__ of exceptions.IOError object>'
+p50
+sS'strerror'
+p51
+S"'No such file or directory'"
+p52
+sS'__delattr__'
+p53
+S"<method-wrapper '__delattr__' of exceptions.IOError object>"
+p54
+sS'__repr__'
+p55
+S"<method-wrapper '__repr__' of exceptions.IOError object>"
+p56
+sS'__hash__'
+p57
+S"<method-wrapper '__hash__' of exceptions.IOError object>"
+p58
+ssS'evalue'
+p59
+S"[Errno 2] No such file or directory: 'D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\views\\\\layout2.html'"
+p60
+sS'frames'
+p61
+(lp62
+(dp63
+S'file'
+p64
+S'D:\\web2py\\gluon\\template.py'
+p65
+sS'dump'
+p66
+(dp67
+S'builtinopen'
+p68
+S'<built-in function open>'
+p69
+sS'fileobj'
+p70
+S'undefined'
+p71
+sS'filepath'
+p72
+S"r'D:\\web2py\\applications\\antecedentesplataforma\\views\\layout2.html'"
+p73
+ssS'lnum'
+p74
+I450
+sS'lines'
+p75
+(dp76
+I448
+S'        # try to read the text.'
+p77
+sI449
+S'        try:'
+p78
+sI450
+S"            fileobj = open(filepath, 'rb')"
+p79
+sI451
+S'            text = fileobj.read()'
+p80
+sI452
+S'            fileobj.close()'
+p81
+sI453
+S'        except IOError:'
+p82
+sI454
+S"            self._raise_error('Unable to open included view file: ' + filepath)"
+p83
+sI445
+S'        # Get the path of the file on the system.'
+p84
+sI446
+S'        filepath = self.path and os.path.join(self.path, filename) or filename'
+p85
+sI447
+S''
+ssS'call'
+p86
+S"(self=<gluon.template.TemplateParser object>, filename='layout2.html')"
+p87
+sS'func'
+p88
+S'_get_file_text'
+p89
+sasS'pyver'
+p90
+S'Python 2.7.9: D:\\web2py\\web2py.exe (prefix: )'
+p91
+sS'etype'
+p92
+S"<type 'exceptions.IOError'>"
+p93
+sS'date'
+p94
+S'Thu Aug 15 11:17:05 2019'
+p95
+sS'locals'
+p96
+(dp97
+S'self'
+p98
+S'<gluon.template.TemplateParser object>'
+p99
+sS'filepath'
+p100
+S"r'D:\\web2py\\applications\\antecedentesplataforma\\views\\layout2.html'"
+p101
+sS'context'
+p102
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p103
+sg35
+S"'layout2.html'"
+p104
+sssS'traceback'
+p105
+S'Traceback (most recent call last):\n  File "D:\\web2py\\gluon\\template.py", line 450, in _get_file_text\n    fileobj = open(filepath, \'rb\')\nIOError: [Errno 2] No such file or directory: \'D:\\\\web2py\\\\applications\\\\antecedentesplataforma\\\\views\\\\layout2.html\'\n'
+p106
+s.

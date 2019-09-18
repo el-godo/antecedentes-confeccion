@@ -1,0 +1,80 @@
+{{extend 'layout1.html'}}
+
+{{block header}}
+<h2>Div. Antecedentes- Sistema de Confeccion</h2>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="{{=URL(c='default',f='index')}}">Home</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="{{=URL(c='entrada',f='entrada')}}">Mesa de Entrada</a>
+  </li>
+  <li class="breadcrumb-item active">
+    <strong>Ver Estado</strong>
+  </li>
+</ol>
+{{end}}
+<div class="ibox-content">
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>                          
+        <th>Dni/Pasaporte</th>
+        <th>Apellido</th>
+        <th>Nombre</th>
+        
+        <th>Tipo</th>
+        <th>Prontuario Nº</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        
+        <td>{{=dnpa}}</td>
+        <td>{{=apellido}}</td>
+        <td>{{=nombre}}</td>
+        <td> {{=te}}</td>
+        <td>{{=nprontuario}}</td>
+        <td>{{=estado}}</td>
+        <th>{{=fechaa}}</th>
+        <td>
+          
+          <a id="anular" href="{{=URL('entrada', 'preg_anular',args=[ide,dnpa,apellido,nombre,tipo,nprontuario,estado,tipo])}}" >Anular</a>
+          <a id="ver" onclick="" href="{{=URL('entrada', 'ver',args=[dnpa])}}" class="button">Ver mas </a>
+          
+        </td>      
+
+      </tr>
+      
+    </tbody>
+    
+  </table> 
+</div>       
+<script >
+  var estado='{{=estado}}';
+  if (estado=="Retirado"){
+    document.getElementById('anular').style.display ="none";
+    document.getElementById('ver').style.display ="block";
+
+
+  };
+  if (estado!="Retirado"){
+    document.getElementById('anular').style.display ="block";
+    document.getElementById('ver').style.display ="none";
+    
+
+  };  
+  
+</script>
+
+
+      
+
+        
+        
+
+        
+        

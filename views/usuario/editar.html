@@ -1,0 +1,37 @@
+{{extend 'layout1.html'}}
+
+{{block header}}
+    <h2>Página de Edición</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{=URL(c='default',f='index')}}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Editar</strong>
+      </li>
+    </ol>
+{{end}}
+
+
+
+<div class="row">
+	<div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>Formulario de Edición</h5>
+                            
+                        </div>
+                        <div class="ibox-content">
+                            {{=formulario}}
+                        </div>
+                    </div>
+                </div>
+</div>
+
+
+
+
+
+
+
+
